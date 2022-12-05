@@ -1,0 +1,12 @@
+Mail unic in baza de date + eroare mai frumoasa de afisat pentru uk constraints
+
+1. Ar trebui sa am utilizatori diferiti pentru baza de date? (cred ca ma refeream la roluri, adica sa am useri de tip client, user de tip agent de support, user admin etc.)
+DA
+
+2. Cum anume ar trebui sa stochez pozele utilizatorilor?
+Cum le voi identifica?    id specific si numele pozei sa caontine ceva de identificare sau poza criptata cu o cheie care sa fie si element de identificare, mai sunt si alte solutii
+Ma gandeam sa am un fisier cu toti utilizatorii (fisiere)   - baza de date
+si sa am un folder acolo la randul lui numit profile picture si sa o pun acolo      DA
+3. Banuiesc ca parolele nu ar trebui sa le tin in baza de date, si nici prin aplicatie. Mai degraba sa tin o cheie criptata?
+
+Poti sa le tii in baze de date dar criptate  - exista functii predefinite in unele limbaje  pt criptare ( cu MD5 de exemplu/)

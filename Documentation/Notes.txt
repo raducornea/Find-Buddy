@@ -1,0 +1,56 @@
+Saptamana 14 predat Referatul 1, CEL TARZIU
+Nu cod in referatul 1
+4-5 pagini cu tot cu garda
+
+
+
+
+Fundamente teoretice (in lucrarea finala alt nume):
+-	Chestiuni de partea teoretica a aplicatiei, daca am folosit algoritmi in aplicatie, sa nu intru in detalii. De ce am folosit un anumit algoritm, de ce am intrat in acea directie
+-	Daca am intalnit proiecte similar, pot intra intr-un paragraph, doua, trei: cu ce ar fi mai bun proiectul meu fata de cele pe care deja le-am studiat in piata (lipsesc chestii din proiectul acela pe care vreau de exemplu sa le adaug)
+
+Proiectarea aplicatiei
+-	Proiectarea aplicatiei, generala, nu trebuie sa intru in amanunte
+-	Schema, structura generala, generalitati
+-	DRIVE?????????????? WHAT
+-	Pot schimba structura aplicatiei daca e
+-	Cateva cuvinte despre functionalitatile pe care vreau sa le implementez
+-	Parti nefunctionale daca vreau sa implementez
+
+Concluzie:
+-	1, 2 paragrafe, explic cam ce am facut pana acum in cod
+-	1 paragraf cu ce ma astept sa obtin si ce cred ca ar putea fi deschis pentru dupa (cand n-as termina)
+
+Anexe:
+-	Diagrame uml daca exista chestii (nu neaparat de pus)
+
+
+
+
+
+
+
+
+
+
+Bibliografia… DIACRITICELE SUNT OBLIGATORII!!!! DIMENSIUNE 12, ALINIERE JUSTIFIED MAI PUTIN TITLURILE CARE POT FI IN ALTE FORME
+
+BIBLIOGRAFIE EXCLUSA DE PE WIKIPEDIA, MAI DEGRABA CITEZ PE CINE AU CITAT EI
+Wiki e open source… Pot scrie chestii suspecte
+
+Citam surse (carti, articole stiintifice, site-uri de web specific notiunilor respective (java al unei firme care implementeaza cod java etc.), Microsoft, Google cu api-uri)
+
+Cum citam? Formatul correct: autorul, numele lucrarii, daca e dintr-o carte numele cartii, si titlul articolului, editura, anul, paginile articolului daca sunt…
+
+
+
+Se pot cita pagini web cu autor / fara autor (stiu autorul -> numele autorului si numele articolului, adresa web, ultima vizitare anul si luna e sufficient)
+Numele autorului -> steluta steluta steluta -> 
+*** -> numele articolului -> restul detaliilor
+
+
+
+1.	Autorul, 2. numele lucrarii, 3. restul datelor
+1 grafic, 2 la proiectare
+Apoi, dupa ce il scriu, il trimit…
+
