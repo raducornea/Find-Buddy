@@ -18,6 +18,7 @@ class User() {
     private var email: String? = null
     private var firstName: String? = null
     private var lastName: String? = null
+    private var roleType: String? = null
 
     fun getId(): Int = _id
     fun getUsername(): String? = username
@@ -25,6 +26,7 @@ class User() {
     fun getEmail(): String? = email
     fun getFirstName(): String? = firstName
     fun getLastName(): String? = lastName
+    fun getRoleType(): String? = roleType
 
     fun setId(id: Int){
         this._id = id
@@ -44,6 +46,9 @@ class User() {
     fun setLastName(lastName: String?){
         this.lastName = lastName
     }
+    fun setRoleType(roleType: String?){
+        this.roleType = roleType
+    }
 
     constructor(
         id: Int,
@@ -59,6 +64,9 @@ class User() {
         this.email = email
         this.firstName = firstName
         this.lastName = lastName
+
+        // this field must be on default User. userType can only be changed, but not initialized
+        this.roleType = "User"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -69,14 +77,15 @@ class User() {
                 Objects.equals(password, other.password) &&
                 Objects.equals(email, other.email) &&
                 Objects.equals(firstName, other.firstName) &&
-                Objects.equals(lastName, other.lastName))
+                Objects.equals(lastName, other.lastName) &&
+                Objects.equals(roleType, other.roleType))
     }
 
     override fun hashCode(): Int {
-        return Objects.hash(_id, username, password, email, firstName, lastName)
+        return Objects.hash(_id, username, password, email, firstName, lastName, roleType)
     }
 
     override fun toString(): String {
-        return "User{id=$_id, username='$username', password='$password', email='$email', firstName='$firstName', lastName='$lastName'}"
+        return "User{id=$_id, username='$username', password='$password', email='$email', firstName='$firstName', lastName='$lastName', roleType='$roleType'}"
     }
 }

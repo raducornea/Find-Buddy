@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"raduq\",\r\n    \"password\": \"gngnbn45h4g84\",\r\n    \"email\": \"raduc@gmail.comcom\",\r\n    \"firstName\": \"Radu-Valentin\",\r\n    \"lastName\": \"Cornea\"\r\n}",
+							"raw": "{\r\n    \"username\": \"raduADMIN\",\r\n    \"password\": \"gngnbn45h4g84\",\r\n    \"email\": \"raduc@gmail.admin\",\r\n    \"firstName\": \"Radu-Valentin\",\r\n    \"lastName\": \"Cornea\",\r\n    \"roleType\": \"Admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -78,7 +78,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"raduq\",\r\n    \"password\": \"gngnbn45h4g84\",\r\n    \"email\": \"raduc@gmail.comcom\",\r\n    \"firstName\": \"Radu-Valentin\",\r\n    \"lastName\": \"Cornea\"\r\n}",
+							"raw": "{\r\n    \"username\": \"user basic\",\r\n    \"password\": \"gngnbn45h4g84\",\r\n    \"email\": \"basicuser@basic.user\",\r\n    \"firstName\": \"Bazic\",\r\n    \"lastName\": \"Uzer\",\r\n    \"roleType\": \"User\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -114,14 +114,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8081/users/4",
+							"raw": "localhost:8081/users/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8081",
 							"path": [
 								"users",
-								"4"
+								"2"
 							]
 						}
 					},

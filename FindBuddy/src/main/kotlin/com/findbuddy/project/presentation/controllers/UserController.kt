@@ -67,7 +67,7 @@ class UserController {
         } catch (exception: Exception){
             return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
-                .body("Error 403. Forbidden. Reason: Already existing user with fields username/email.")
+                .body("Error 403. Forbidden. Reason: Unsatisfied field constraints.")
         }
     }
 
@@ -81,6 +81,7 @@ class UserController {
                     user.setEmail(newUser.getEmail())
                     user.setFirstName(newUser.getFirstName())
                     user.setLastName(newUser.getLastName())
+                    user.setRoleType(newUser.getRoleType())
                     userRepository.save(user)
                 }
                 .orElseGet {
@@ -95,7 +96,7 @@ class UserController {
         } catch (exception: Exception){
             return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
-                .body("Error 403. Forbidden. Reason: Already existing user with fields username/email.")
+                .body("Error 403. Forbidden. Reason: Unsatisfied field constraints.")
         }
     }
 
@@ -103,7 +104,9 @@ class UserController {
     fun deleteUser(@PathVariable id: Int): ResponseEntity<*> {
         try {
             userRepository.deleteById(id)
-            return ResponseEntity.noContent().build<Any>()
+            return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .body("Success 204. No Content. Nothing more to show here.")
         } catch (ex: Exception) {
             return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)

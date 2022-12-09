@@ -9,6 +9,7 @@ class UserModel : RepresentationModel<UserModel>() {
     private var email: String? = null
     private var firstName: String? = null
     private var lastName: String? = null
+    private var roleType: String? = null
 
     fun getId(): Int = _id
     fun getUsername(): String? = username
@@ -16,6 +17,7 @@ class UserModel : RepresentationModel<UserModel>() {
     fun getEmail(): String? = email
     fun getFirstName(): String? = firstName
     fun getLastName(): String? = lastName
+    fun getRoleType(): String? = roleType
 
     fun setId(id: Int){
         this._id = id
@@ -34,5 +36,8 @@ class UserModel : RepresentationModel<UserModel>() {
     }
     fun setLastName(lastName: String){
         this.lastName = lastName
+    }
+    fun setRoleType(roleType: String?){
+        this.roleType = roleType
     }
 }

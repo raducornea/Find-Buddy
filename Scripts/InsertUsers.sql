@@ -1,2 +1,2 @@
-insert into users(username, password, email, first_name, last_name) values ('xSlayer404', '3kgj9hkGk3jgf', 'mariangeorgian@gmail.com', 'Marian', 'Georgian');
-insert into users(username, password, email, first_name, last_name) values ('raduc', 'gngnbn45h4g84', 'raduc@gmail.comcom', 'Radu-Valentin', 'Cornea');
+insert into users(username, password, email, first_name, last_name, role_type) values ('xSlayer404', '3kgj9hkGk3jgf', 'mariangeorgian@gmail.com', 'Marian', 'Georgian', 'User');
+insert into users(username, password, email, first_name, last_name, role_type) values ('raduc', 'gngnbn45h4g84', 'raduc@gmail.comcom', 'Radu-Valentin', 'Cornea', 'Admin');

@@ -5,5 +5,6 @@ create table users(
 	email varchar(150) not null unique,
 	first_name varchar(35) not null,
 	last_name varchar(35) not null,
+	role_type varchar(30) not null,
 	primary key(id)
 );

@@ -1,8 +1,3 @@
-eroare mai frumoasa de afisat pentru uk constraints
-
-1. Ar trebui sa am utilizatori diferiti pentru baza de date? (cred ca ma refeream la roluri, adica sa am useri de tip client, user de tip agent de support, user admin etc.)
-DA
-
 2. Cum anume ar trebui sa stochez pozele utilizatorilor?
 Cum le voi identifica?    id specific si numele pozei sa caontine ceva de identificare sau poza criptata cu o cheie care sa fie si element de identificare, mai sunt si alte solutii
 Ma gandeam sa am un fisier cu toti utilizatorii (fisiere)   - baza de date
