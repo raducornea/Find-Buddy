@@ -1,4 +1,4 @@
-Mail unic in baza de date + eroare mai frumoasa de afisat pentru uk constraints
+eroare mai frumoasa de afisat pentru uk constraints
 
 1. Ar trebui sa am utilizatori diferiti pentru baza de date? (cred ca ma refeream la roluri, adica sa am useri de tip client, user de tip agent de support, user admin etc.)
 DA
