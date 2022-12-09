@@ -16,6 +16,7 @@ import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.IanaLinkRelations
 import org.springframework.hateoas.PagedModel
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -58,32 +59,44 @@ class UserController {
 
     @PostMapping("/users")
     fun newUser(@RequestBody newUser: User): ResponseEntity<*> {
-        val entityModel = userAssembler.toModel(userRepository.save(newUser))
-        return ResponseEntity
-            .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
-            .body(entityModel)
+        try {
+            val entityModel = userAssembler.toModel(userRepository.save(newUser))
+            return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel)
+        } catch (exception: Exception){
+            return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body("Error 403. Forbidden. Reason: Already existing user with fields username/email.")
+        }
     }
 
     @PutMapping("/users/{id}")
     fun replaceUser(@RequestBody newUser: User, @PathVariable id: Int): ResponseEntity<*> {
-        val updatedUser = userRepository.findById(id)
-            .map { user: User ->
-                user.setUsername(newUser.getUsername())
-                user.setPassword(newUser.getPassword())
-                user.setEmail(newUser.getEmail())
-                user.setFirstName(newUser.getFirstName())
-                user.setLastName(newUser.getLastName())
-                userRepository.save(user)
-            }
-            .orElseGet {
-                newUser.setId(id)
-                userRepository.save(newUser)
-            }
-        val entityModel = userAssembler.toModel(updatedUser)
+        try {
+            val updatedUser = userRepository.findById(id)
+                .map { user: User ->
+                    user.setUsername(newUser.getUsername())
+                    user.setPassword(newUser.getPassword())
+                    user.setEmail(newUser.getEmail())
+                    user.setFirstName(newUser.getFirstName())
+                    user.setLastName(newUser.getLastName())
+                    userRepository.save(user)
+                }
+                .orElseGet {
+                    newUser.setId(id)
+                    userRepository.save(newUser)
+                }
+            val entityModel = userAssembler.toModel(updatedUser)
 
-        return ResponseEntity
-            .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
-            .body(entityModel)
+            return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel)
+        } catch (exception: Exception){
+            return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body("Error 403. Forbidden. Reason: Already existing user with fields username/email.")
+        }
     }
 
     @DeleteMapping("/users/{id}")
@@ -92,7 +105,9 @@ class UserController {
             userRepository.deleteById(id)
             return ResponseEntity.noContent().build<Any>()
         } catch (ex: Exception) {
-            return ResponseEntity.badRequest().body("Nu a mers delete la UserController")
+            return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Error 400. Bad Request. Reason: Cannot perform delete on account that doesn't exist.")
         }
     }
 
