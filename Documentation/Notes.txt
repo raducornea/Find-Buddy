@@ -9,6 +9,7 @@ Fundamente teoretice (in lucrarea finala alt nume):
 -	Chestiuni de partea teoretica a aplicatiei, daca am folosit algoritmi in aplicatie, sa nu intru in detalii. De ce am folosit un anumit algoritm, de ce am intrat in acea directie
 -	Daca am intalnit proiecte similar, pot intra intr-un paragraph, doua, trei: cu ce ar fi mai bun proiectul meu fata de cele pe care deja le-am studiat in piata (lipsesc chestii din proiectul acela pe care vreau de exemplu sa le adaug)
 
+
 Proiectarea aplicatiei
 -	Proiectarea aplicatiei, generala, nu trebuie sa intru in amanunte
 -	Schema, structura generala, generalitati
@@ -24,6 +25,13 @@ Concluzie:
 Anexe:
 -	Diagrame uml daca exista chestii (nu neaparat de pus)
 
+
+
+	Arhitectura aplicatiei
+	Lista specificatii functionale
+	Lista specificatii non-functionale
+Concluzii
+	Obiective
 
 
 
