@@ -23,3 +23,9 @@ Asta ar insemna ca ar trebui sa-mi fac eu algoritmii de la 0 totusi...
 
 lista titluri posibile
 de pus doc pe drive pe care sa-l editez, ok
+
+
+
+
+28.02
+bun, deci. sa nu uit, sa pun poze cu diagramele ER pentru users, roles

@@ -1,0 +1,15 @@
+############################## 0 - Guest ##############################
+- Poate doar sa CITEASCA informatii PUBLICE de pe aplicatie
+
+############################## 1 - User ##############################
+- Informatii Personale + Chat + Rating + Report + Suport + Discovery
+
+############################## 2 - Suport ##############################
+- Controleaza informatiile clientilor + cererile lor
+(deci oricine cu roul asta poate edita oricarui user)
+
+############################## 3 - Administrator Aplicatie ##############################
+- Controleaza informatiile clientilor + datele clientilor
+- Creeaza utilizatori noi *cu rol de Suport*
+- Valideaza/Nu cont utilizator existent
+- Editeaza rolurile unui utilizator
