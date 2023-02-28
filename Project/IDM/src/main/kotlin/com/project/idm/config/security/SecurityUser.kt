@@ -19,7 +19,7 @@ class SecurityUser() : UserDetails {
         // (authorities (read, write, delete, execute) / roles (admin, manager, client, visitor))
         return user.getAuthorities() // get granted actions one can do
             .stream()
-            .map { SecurityAuthority() }
+            .map { SecurityAuthority(it) }
             .collect(Collectors.toList()) // List.of(() -> "read");
     }
 

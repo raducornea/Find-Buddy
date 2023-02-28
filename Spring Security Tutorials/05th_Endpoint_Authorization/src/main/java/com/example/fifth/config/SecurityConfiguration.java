@@ -35,7 +35,7 @@ public class SecurityConfiguration {
 //                .anyRequest().hasAnyRole("ADMIN", "MANAGER")
 //                .anyRequest().access("isAuthenticated() and hasAuthority('read')") // SpEL --> authorization rules
 //                .requestMatchers(HttpMethod.GET, "/demo").hasAuthority("read") // cu metoda???
-                .requestMatchers("/demo").hasAuthority("read")
+                .requestMatchers("/api/demo").hasAuthority("read")
 //                .requestMatchers("/api/**").hasAuthority("write") // all routes who have the parent /api
 //                .and().csrf().disable() // DON'T DO THIS IN REAL WORLD APPS // protection against attacks for CUD ops.
                 .anyRequest().authenticated()
