@@ -13,7 +13,9 @@ class SecurityUser() : UserDetails {
         this.user = user
     }
 
-    // GrantedAuthority - contract for both Authorities / Roles
+    /**
+     * GrantedAuthority - contract for both Authorities / Roles
+     */
     override fun getAuthorities(): Collection<GrantedAuthority> {
 
         // (authorities (read, write, delete, execute) / roles (admin, manager, client, visitor))
