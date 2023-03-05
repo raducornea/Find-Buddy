@@ -26,16 +26,16 @@ class User {
     fun getPassword(): String = password
     fun getAuthorities(): Set<Authority> = authorities
 
-    fun setId(id: Int){
+    fun setId(id: Int) {
         this._id = id
     }
-    fun setUsername(username: String){
+    fun setUsername(username: String) {
         this.username = username
     }
-    fun setPassword(password: String){
+    fun setPassword(password: String) {
         this.password = password
     }
-    fun setAuthorities(authorities: Set<Authority>){
+    fun setAuthorities(authorities: Set<Authority>) {
         this.authorities = authorities
     }
 }

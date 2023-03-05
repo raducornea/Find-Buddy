@@ -19,13 +19,13 @@ class Authority {
     fun getName(): String = name
     fun getUsers(): Set<User> = users
 
-    fun setId(id: Int){
+    fun setId(id: Int) {
         this._id = id
     }
-    fun setName(name: String){
+    fun setName(name: String) {
         this.name = name
     }
-    fun setUsers(users: Set<User>){
+    fun setUsers(users: Set<User>) {
         this.users = users
     }
 }
