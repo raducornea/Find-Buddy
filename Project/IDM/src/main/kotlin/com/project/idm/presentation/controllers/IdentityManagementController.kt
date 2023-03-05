@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler
+import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.ModelAndView
@@ -27,6 +28,8 @@ class IdentityManagementController {
 
         val cookie = Cookie("cookieAuthorizationToken", token)
         cookie.maxAge = ExpiryTimes.ONE_DAY.seconds.toInt()
+        cookie.isHttpOnly = true
+        cookie.secure = true
 
         response.addCookie(cookie);
         response.sendRedirect("http://localhost:8000/home")
@@ -43,7 +46,10 @@ class IdentityManagementController {
     }
 
     @GetMapping("/logout")
-    fun logout(request: HttpServletRequest, response: HttpServletResponse) {
+    fun logout(
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+    ) {
 
         val auth: Authentication = SecurityContextHolder.getContext().authentication
         SecurityContextLogoutHandler().logout(request, response, auth)

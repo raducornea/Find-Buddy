@@ -27,6 +27,8 @@ class SecurityConfiguration() {
 
             .authorizeHttpRequests()
                 .requestMatchers("/hello").hasAuthority("read")
+                .requestMatchers("/verify-token").permitAll()
+                .requestMatchers("/invalidate-token").permitAll()
                 .requestMatchers("/**").hasAnyAuthority("read", "write")
                 .anyRequest().authenticated()
                 .and()

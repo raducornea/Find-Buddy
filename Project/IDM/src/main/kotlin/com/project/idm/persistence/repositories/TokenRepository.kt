@@ -8,4 +8,7 @@ interface TokenRepository : JpaRepository<Token, String> {
 
     @Query("select t from Token t where t._uuid = :uuid") // JPQL syntax
     fun findTokenByUuid(uuid: String): Token
+
+    @Query("select t from Token t where t.token = :token") // JPQL syntax
+    fun findTokenByToken(token: String): Token
 }
