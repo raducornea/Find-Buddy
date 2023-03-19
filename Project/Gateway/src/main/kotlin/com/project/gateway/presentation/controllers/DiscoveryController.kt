@@ -25,11 +25,20 @@ class DiscoveryController {
     private lateinit var jsonOperations: JSONOperations
 
     @GetMapping("/login")
-    fun loginRedirect(): RedirectView {
+    fun loginRedirect(
+        @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") cookieJws: String,
+    ): RedirectView {
 
-        val redirectView = RedirectView()
-        redirectView.url = "http://localhost:8001/login"
-        return redirectView
+        if (cookieJws == ""){
+            val redirectView = RedirectView()
+            redirectView.url = "http://localhost:8001/login"
+            return redirectView
+        } else {
+            val redirectView = RedirectView()
+            redirectView.url = "http://localhost:8000/"
+            return redirectView
+        }
+
     }
 
     @GetMapping("/logout")
@@ -39,21 +48,37 @@ class DiscoveryController {
     ) {
 
         // invalidate cookie
-        // todo fix this
         val url = "http://localhost:8001/invalidate-token"
         urlCaller.getTokenResponseBody(url, cookieJws).toString()
 
         // remove cookie from client too
-        val cookie = Cookie("cookieAuthorizationToken", null)
-        cookie.maxAge = 0
-        cookie.secure = true
-        cookie.isHttpOnly = true
-        cookie.path = "/"
+        val cookieAuthorizationToken = Cookie("cookieAuthorizationToken", null)
+        cookieAuthorizationToken.maxAge = 0
+        cookieAuthorizationToken.secure = true
+        cookieAuthorizationToken.isHttpOnly = true
+        cookieAuthorizationToken.path = "/"
 
-        response.addCookie(cookie);
+        val cookieJSESSIONID = Cookie("JSESSIONID", null)
+        cookieJSESSIONID.maxAge = 0
+        cookieJSESSIONID.secure = true
+        cookieJSESSIONID.isHttpOnly = true
+        cookieJSESSIONID.path = "/"
+
+        response.addCookie(cookieAuthorizationToken)
+        response.addCookie(cookieJSESSIONID)
         response.sendRedirect("http://localhost:8001/login")
+    }
 
-//        return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("http://localhost:8001/login")).build();
+    @GetMapping("/register")
+    fun registerRedirect(
+        response: HttpServletResponse,
+        @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") cookieJws: String,
+    ) {
+
+        // remove cookie from client too
+        val cookieAuthorization = Cookie("cookieAuthorizationToken", cookieJws)
+        response.addCookie(cookieAuthorization)
+        response.sendRedirect("http://localhost:8001/register")
     }
 
     @GetMapping("/home", "/", "index")

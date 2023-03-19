@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Register new User</title>
+</head>
+
+<body>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <div class="form-row">
+
+            <div class="col-md-6 form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" th:field="*{username}">
+            </div>
+
+            <div class="col-md-6 form-group">
+                <label>Name</label>
+                <input type="password" class="form-control" th:field="*{password}">
+            </div>
+
+            <div class="col-md-6 form-group">
+                <label>Name</label>
+                <input type="password" class="form-control" th:field="*{passwordConfirm}">
+            </div>
+
+<!--            <div class="col-md-6 form-group">-->
+<!--                <label>Department</label>-->
+<!--                <select class="form-control" th:field="*{dept}">-->
+<!--                    <option value="">Choose...</option>-->
+<!--                    <option value="IT">IT</option>-->
+<!--                    <option value="HR">HR</option>-->
+<!--                    <option value="Sale">Sale</option>-->
+<!--                </select>-->
+<!--            </div>-->
+
+<!--            <div class="col-md-6 form-group">-->
+<!--                <label>Joining Date</label>-->
+<!--                <input type="text" class="form-control" placeholder="yyyy-MM-dd" id="join_datepicker" th:field="*{joiningDate}">-->
+<!--            </div>-->
+
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-3">Register</button>
+    </form>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</body>
+
+</html>

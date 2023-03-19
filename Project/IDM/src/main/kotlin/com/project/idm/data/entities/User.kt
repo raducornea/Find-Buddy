@@ -1,6 +1,7 @@
 package com.project.idm.data.entities
 
 import jakarta.persistence.*
+import kotlin.jvm.Transient
 
 @Entity
 @Table(name = "users")
@@ -12,6 +13,8 @@ class User {
     private var _id = 0
     private var username: String = ""
     private var password: String = ""
+    @Transient
+    private var passwordConfirm: String = ""
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -24,6 +27,7 @@ class User {
     fun getId(): Int = _id
     fun getUsername(): String = username
     fun getPassword(): String = password
+    fun getPasswordConfirm(): String = passwordConfirm
     fun getAuthorities(): Set<Authority> = authorities
 
     fun setId(id: Int) {
@@ -34,6 +38,9 @@ class User {
     }
     fun setPassword(password: String) {
         this.password = password
+    }
+    fun setPasswordConfirm(passwordConfirm: String) {
+        this.passwordConfirm = passwordConfirm
     }
     fun setAuthorities(authorities: Set<Authority>) {
         this.authorities = authorities

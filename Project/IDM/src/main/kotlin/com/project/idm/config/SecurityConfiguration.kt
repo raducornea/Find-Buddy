@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
@@ -29,6 +31,7 @@ class SecurityConfiguration() {
                 .requestMatchers("/hello").hasAuthority("read")
                 .requestMatchers("/verify-token").permitAll()
                 .requestMatchers("/invalidate-token").permitAll()
+                .requestMatchers("/register").permitAll()
                 .requestMatchers("/**").hasAnyAuthority("read", "write")
                 .anyRequest().authenticated()
                 .and()
@@ -42,8 +45,13 @@ class SecurityConfiguration() {
             .logout()
                 .logoutSuccessUrl("/login")
                 .permitAll()
+                .and()
 
-            .and().build()
+//            .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+
+            .build()
     }
 
     @Bean
