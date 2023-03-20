@@ -19,6 +19,8 @@ import java.security.Principal
 @RestController
 class IdentityManagementController {
 
+    // should protect against spam attacks
+
     @Autowired
     private lateinit var tokenService: TokenService
 
@@ -27,6 +29,7 @@ class IdentityManagementController {
 
         val token = tokenService.generateToken(principal.name)
 
+        // attach cookieAuthorizationToken to the redirect link
         val cookie = Cookie("cookieAuthorizationToken", token)
         cookie.maxAge = ExpiryTimes.ONE_DAY.seconds.toInt()
         cookie.isHttpOnly = true
@@ -39,35 +42,29 @@ class IdentityManagementController {
     @GetMapping("/register")
     fun register(): Any {
 
-        val auth: Authentication = SecurityContextHolder.getContext().authentication
-        println(auth.authorities.elementAt(0))
-
-        // not authenticated
-        if (auth.authorities.isNotEmpty() && auth.authorities.elementAt(0).toString() != "ROLE_ANONYMOUS") {
+        if (isAuthenticatedAlready()) {
             val redirectView = RedirectView()
             redirectView.url = "http://localhost:8000/home"
-
             return redirectView
 
-        // authenticated
         } else {
             val userModel = UserModel()
             val modelAndView = ModelAndView("register")
             modelAndView.addObject("user", userModel)
-
             return modelAndView
         }
     }
 
     @PostMapping("/register")
     fun register(@ModelAttribute userModel: UserModel): ModelAndView {
-        // should protect against spam attacks
 
+        // perform logic to register User here + UserProfle
         println(userModel.getUsername())
         println(userModel.getPassword())
         println(userModel.getPasswordConfirm())
 
-        return ModelAndView("hello")
+        // should return DIFFERENT ModelAndviews depending on the status of posting the resource
+        return ModelAndView("register-success")
     }
 
     // known bug: after logging out, even if logged out already, and going in login, you have to press twice to log in
@@ -75,29 +72,38 @@ class IdentityManagementController {
     fun login(
         request: HttpServletRequest,
         response: HttpServletResponse,
-    ): ModelAndView {
+    ): Any {
 
-        return ModelAndView("login")
+        if (isAuthenticatedAlready()) {
+            val redirectView = RedirectView()
+            redirectView.url = "http://localhost:8001"
+            return redirectView
+
+        } else {
+            return ModelAndView("login")
+        }
+
     }
 
     @GetMapping("/logout")
-    fun logout(
+    fun logout(): ModelAndView {
+        return ModelAndView("logout")
+    }
+
+    @PostMapping("/logout-confirmed")
+    fun logoutConfirm(
         request: HttpServletRequest,
         response: HttpServletResponse,
     ) {
 
         val auth: Authentication = SecurityContextHolder.getContext().authentication
         SecurityContextLogoutHandler().logout(request, response, auth)
-        SecurityContextHolder.clearContext()
-
-        // remove cookie from client too
-        val cookieAuthorizationToken = Cookie("cookieAuthorizationToken", null)
-        cookieAuthorizationToken.maxAge = 0
-        cookieAuthorizationToken.secure = true
-        cookieAuthorizationToken.isHttpOnly = true
-        cookieAuthorizationToken.path = "/"
-
-        response.addCookie(cookieAuthorizationToken)
         response.sendRedirect("/login")
+    }
+
+    private fun isAuthenticatedAlready(): Boolean {
+        val auth: Authentication = SecurityContextHolder.getContext().authentication
+        println(auth.authorities.elementAt(0))
+        return auth.authorities.isNotEmpty() && auth.authorities.elementAt(0).toString() != "ROLE_ANONYMOUS"
     }
 }

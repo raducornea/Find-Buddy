@@ -33,6 +33,7 @@ class DiscoveryController {
             val redirectView = RedirectView()
             redirectView.url = "http://localhost:8001/login"
             return redirectView
+
         } else {
             val redirectView = RedirectView()
             redirectView.url = "http://localhost:8000/"
@@ -58,15 +59,8 @@ class DiscoveryController {
         cookieAuthorizationToken.isHttpOnly = true
         cookieAuthorizationToken.path = "/"
 
-        val cookieJSESSIONID = Cookie("JSESSIONID", null)
-        cookieJSESSIONID.maxAge = 0
-        cookieJSESSIONID.secure = true
-        cookieJSESSIONID.isHttpOnly = true
-        cookieJSESSIONID.path = "/"
-
         response.addCookie(cookieAuthorizationToken)
-        response.addCookie(cookieJSESSIONID)
-        response.sendRedirect("http://localhost:8001/login")
+        response.sendRedirect("http://localhost:8001/logout")
     }
 
     @GetMapping("/register")

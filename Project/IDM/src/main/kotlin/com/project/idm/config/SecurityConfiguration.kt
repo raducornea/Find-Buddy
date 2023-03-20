@@ -47,10 +47,6 @@ class SecurityConfiguration() {
                 .permitAll()
                 .and()
 
-//            .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-
             .build()
     }
 
