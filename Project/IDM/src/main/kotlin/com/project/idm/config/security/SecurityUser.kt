@@ -1,4 +1,4 @@
-package com.project.idm.config.security;
+package com.project.idm.config.security
 
 import com.project.idm.data.entities.User
 import org.springframework.security.core.GrantedAuthority
@@ -22,7 +22,7 @@ class SecurityUser() : UserDetails {
         return user.getAuthorities() // get granted actions one can do
             .stream()
             .map { SecurityAuthority(it) }
-            .collect(Collectors.toList()) // List.of(() -> "read");
+            .collect(Collectors.toList()) // List.of(() -> "read")
     }
 
     override fun getPassword(): String = user.getPassword()

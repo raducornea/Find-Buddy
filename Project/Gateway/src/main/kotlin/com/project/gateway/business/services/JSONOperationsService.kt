@@ -1,14 +1,15 @@
 package com.project.gateway.business.services
 
 import com.google.gson.*
+import com.project.gateway.business.interfaces.IJSONOperationsService
 import org.springframework.stereotype.Service
 import java.util.*
 
 
 @Service
-class JSONOperations {
+class JSONOperationsService : IJSONOperationsService {
 
-    fun prettyJSONString(stringToTransform: String): String{
+    override fun prettyJSONString(stringToTransform: String): String {
 
         // code might crash, so it's better to return something rather than letting it crash
         try {
@@ -22,7 +23,7 @@ class JSONOperations {
         }
     }
 
-    fun getAuthoritiesFromJSONString(stringToTransform: String): List<String> {
+    override fun getAuthoritiesFromJSONString(stringToTransform: String): List<String> {
 
         // code might crash, so it's better to return something rather than letting it crash
         try {

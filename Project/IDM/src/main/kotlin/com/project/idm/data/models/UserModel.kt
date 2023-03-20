@@ -1,9 +1,5 @@
 package com.project.idm.data.models
 
-import com.project.idm.data.entities.Authority
-import jakarta.persistence.*
-import kotlin.jvm.Transient
-
 /**
  * UserModel contains Login Details + Profile Details (for ProfileService, used later)
  */

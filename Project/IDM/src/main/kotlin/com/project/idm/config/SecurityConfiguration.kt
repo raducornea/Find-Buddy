@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain
  */
 @Configuration
 @EnableWebSecurity
-class SecurityConfiguration() {
+class SecurityConfiguration {
 
     @Bean
     @Throws(Exception::class)
@@ -52,12 +52,6 @@ class SecurityConfiguration() {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
-
-//        val passwordEncoder = BCryptPasswordEncoder()
-//        val password = "12345"
-//        val hashedPassword = passwordEncoder.encode(password)
-//        println(hashedPassword)
-
         return BCryptPasswordEncoder()
     }
 

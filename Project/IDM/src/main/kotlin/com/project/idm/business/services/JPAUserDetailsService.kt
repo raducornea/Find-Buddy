@@ -1,13 +1,13 @@
-package com.project.idm.business.services;
+package com.project.idm.business.services
 
 import com.project.idm.data.entities.User
-import com.project.idm.persistence.repositories.UserRepository;
-import com.project.idm.config.security.SecurityUser;
+import com.project.idm.persistence.repositories.UserRepository
+import com.project.idm.config.security.SecurityUser
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.stereotype.Service
 
 /**
  * Se implementeaza interfata UserDetailsService
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * -> astfel, nu va mai fi folosit cel cu parolele random la pornirea aplicatiei
  */
 @Service
-class JPAUserDetailsService() : UserDetailsService {
+class JPAUserDetailsService : UserDetailsService {
 
     @Autowired
     private lateinit var userRepository: UserRepository

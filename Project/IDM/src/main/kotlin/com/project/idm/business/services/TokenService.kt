@@ -7,6 +7,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import com.project.idm.business.interfaces.ICryptographyService
+import com.project.idm.business.interfaces.ITokenService
 import com.project.idm.config.security.SecurityUser
 import com.project.idm.data.entities.Token
 import com.project.idm.data.entities.User
@@ -21,7 +23,7 @@ import java.util.*
 
 
 @Service
-class TokenService {
+class TokenService : ITokenService {
 
     @Value("\${very.secret.token.authentication.thingy}")
     private lateinit var tokenSecret: String
@@ -30,10 +32,10 @@ class TokenService {
     @Autowired
     private lateinit var tokenRepository: TokenRepository
     @Autowired
-    private lateinit var cryptographyService: CryptographyService
+    private lateinit var cryptographyService: ICryptographyService
     private var tokenLifetimeSeconds: Long = ExpiryTimes.ONE_DAY.seconds
 
-    fun generateToken(username: String): String {
+    override fun generateToken(username: String): String {
 
         val userFound: User = userRepository.findUserByUsername(username).get()
         val securityUser = SecurityUser(userFound)
@@ -63,7 +65,7 @@ class TokenService {
         return encryptedToken
     }
 
-    fun verifySignature(token: String): Boolean {
+    override fun verifySignature(token: String): Boolean {
 
         try {
             val algorithm = Algorithm.HMAC256(tokenSecret)
@@ -76,7 +78,7 @@ class TokenService {
         }
     }
 
-    fun verifyToken(token: String): String {
+    override fun verifyToken(token: String): String {
 
         // decode the token
         val decoder = Base64.getDecoder()
@@ -119,7 +121,7 @@ class TokenService {
         return "Success!"
     }
 
-    fun invalidateEncryptedToken(encryptedToken: String) {
+    override fun invalidateEncryptedToken(encryptedToken: String) {
 
         try {
 

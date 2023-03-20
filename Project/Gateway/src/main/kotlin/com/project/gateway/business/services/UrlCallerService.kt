@@ -1,5 +1,6 @@
 package com.project.gateway.business.services
 
+import com.project.gateway.business.interfaces.IUrlCallerService
 import org.springframework.stereotype.Service
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -7,9 +8,9 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 @Service
-class UrlCaller {
+class UrlCallerService : IUrlCallerService {
 
-    fun getTokenResponseBody(url: String, token: String): Any {
+    override fun getTokenResponseBody(url: String, token: String): Any {
 
         val connection = URL(url).openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
@@ -18,7 +19,7 @@ class UrlCaller {
         return getResponseBody(connection)
     }
 
-    fun getResponseBody(connection: HttpURLConnection): Any {
+    override fun getResponseBody(connection: HttpURLConnection): Any {
 
         if (connection.responseCode == 500){
             return "Resource on ${connection.url} not available."

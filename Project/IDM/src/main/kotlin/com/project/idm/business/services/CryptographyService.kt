@@ -1,5 +1,6 @@
 package com.project.idm.business.services
 
+import com.project.idm.business.interfaces.ICryptographyService
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.security.Key
@@ -8,12 +9,12 @@ import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
 @Service
-class CryptographyService {
+class CryptographyService : ICryptographyService {
 
     @Value("\${secret.token.encryption.secret.thingy.thingy}")
     private lateinit var cryptoTokenSecret: String
 
-    fun encrypt(token: String): String {
+    override fun encrypt(token: String): String {
         val secretKey: Key = SecretKeySpec(cryptoTokenSecret.toByteArray(Charsets.UTF_8), "AES")
         val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
         cipher.init(Cipher.ENCRYPT_MODE, secretKey)
@@ -21,7 +22,7 @@ class CryptographyService {
         return Base64.getEncoder().encodeToString(encryptedValue)
     }
 
-    fun decrypt(value: String): String {
+    override fun decrypt(value: String): String {
         val secretKey: Key = SecretKeySpec(cryptoTokenSecret.toByteArray(Charsets.UTF_8), "AES")
         val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
         cipher.init(Cipher.DECRYPT_MODE, secretKey)

@@ -1,33 +1,21 @@
 package com.project.idm.presentation.controllers
 
-import com.google.gson.*
-import com.project.idm.business.services.CryptographyService
-import com.project.idm.business.services.TokenService
-import com.project.idm.persistence.repositories.TokenRepository
-import com.project.idm.persistence.repositories.UserRepository
+import com.project.idm.business.interfaces.ICryptographyService
+import com.project.idm.business.interfaces.ITokenService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.core.Authentication
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
 
 
 @RestController
 class TokenController {
 
     @Autowired
-    private lateinit var cryptographyService: CryptographyService
+    private lateinit var cryptographyService: ICryptographyService
 
     @Autowired
-    private lateinit var userRepository: UserRepository
-
-    @Autowired
-    private lateinit var tokenRepository: TokenRepository
-
-    @Autowired
-    private lateinit var tokenService: TokenService
+    private lateinit var tokenService: ITokenService
 
     @GetMapping("/verify-token")
     fun verifyToken(
@@ -53,6 +41,5 @@ class TokenController {
     ) {
         tokenService.invalidateEncryptedToken(encryptedToken)
     }
-
 
 }

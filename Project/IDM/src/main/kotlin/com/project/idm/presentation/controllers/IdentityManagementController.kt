@@ -1,6 +1,6 @@
 package com.project.idm.presentation.controllers
 
-import com.project.idm.business.services.TokenService
+import com.project.idm.business.interfaces.ITokenService
 import com.project.idm.data.models.UserModel
 import com.project.idm.data.tokens.ExpiryTimes
 import jakarta.servlet.http.Cookie
@@ -19,10 +19,8 @@ import java.security.Principal
 @RestController
 class IdentityManagementController {
 
-    // should protect against spam attacks
-
     @Autowired
-    private lateinit var tokenService: TokenService
+    private lateinit var tokenService: ITokenService
 
     @GetMapping("/")
     fun gatewayRedirect(principal: Principal, response: HttpServletResponse) {
@@ -35,7 +33,7 @@ class IdentityManagementController {
         cookie.isHttpOnly = true
         cookie.secure = true
 
-        response.addCookie(cookie);
+        response.addCookie(cookie)
         response.sendRedirect("http://localhost:8000/home")
     }
 
@@ -62,6 +60,11 @@ class IdentityManagementController {
         println(userModel.getUsername())
         println(userModel.getPassword())
         println(userModel.getPasswordConfirm())
+
+        //        val passwordEncoder = BCryptPasswordEncoder()
+        //        val password = "12345"
+        //        val hashedPassword = passwordEncoder.encode(password)
+        //        println(hashedPassword)
 
         // should return DIFFERENT ModelAndviews depending on the status of posting the resource
         return ModelAndView("register-success")

@@ -1,4 +1,4 @@
-package com.project.idm.config.security;
+package com.project.idm.config.security
 
 
 import com.project.idm.data.entities.Authority
