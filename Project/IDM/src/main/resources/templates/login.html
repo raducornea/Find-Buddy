@@ -2,11 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
     <head>
-        <title>Please Log In</title>
+        <title>Login</title>
+        <link th:href="@{/css/login.css}" rel="stylesheet"/>
+        <script type="text/javascript" th:src="@{/js/login.js}"></script>
     </head>
 
-    <body>
-        <h1>Please Log In</h1>
+    <body class="container">
         <div th:if="${param.error}">
             Invalid username and password.
         </div>
@@ -15,19 +16,24 @@
             You have been logged out.
         </div>
 
-        <form th:action="@{/login}" method="post">
-            <div>
-                <input type="text" name="username" placeholder="Username"/>
-            </div>
-            <div>
-                <input type="password" name="password" placeholder="Password"/>
-            </div>
-            <input type="submit" value="Log in"/>
-        </form>
+        <fieldset class="login_container">
+            <legend>Login Form</legend>
 
+            <!-- login form -->
+            <form th:action="@{/login}" method="post">
+                <div><input id="login_username" th:oninput="checkLoginInputs()" type="text" name="username" placeholder="Username"/></div>
+                <div><input id="login_password" th:oninput="checkLoginInputs()" type="password" name="password" placeholder="Password"/></div>
+
+                <input id="login_submit" type="submit" value="Log in"/>
+            </form>
+        </fieldset>
+
+        <!-- register redirect -->
         <form th:action="@{/register}" method="get">
             <input type="submit" value="Register"/>
         </form>
+    
+        <button id="switch_mode_button" onclick="switchMode()">Mode</button>
     </body>
 
 </html>
