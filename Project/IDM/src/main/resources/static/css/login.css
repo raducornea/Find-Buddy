@@ -1,17 +1,69 @@
-
-/* Default theme */
-/* body {
-    background-color: #f8fcc5;
-    color: #07033a;
-} */
-
-/* Dark mode */
-.dark-mode {
-    background-color: #07033a;
-    color: #f8fcc5;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
 }
 
-.light-mode {
-    background-color: #f8fcc5;
-    color: #07033a;
+#switch_theme_button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.login_container {
+    width: 80%;
+    max-width: 300px;
+    margin: auto; /* center the form horizontally */
+    
+    /* center everything inside Login Form */
+    text-align: center; 
+
+    /* ensure all elements are sized including padding and border */
+    box-sizing: border-box;
+}
+    
+#login_form {
+    font-size: 30px;
+
+    /* center "Login Form" legend */
+    text-align: center; 
+}
+
+.forgot_password {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.signup_now {
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.login_container input[type="text"],
+.login_container input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.login_container input[type="submit"] {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
