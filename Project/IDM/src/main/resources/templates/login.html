@@ -4,24 +4,25 @@
     <head>
         <title>Login</title>
 
-        <script type="text/javascript" th:src="@{/js/all-pages.js}"></script>
-        <script type="text/javascript" th:src="@{/js/login.js}"></script>
+        <script type="module" th:src="@{/js/Cookie.js}"></script>
+        <script type="module" th:src="@{/js/Theme.js}"></script>
+        <script type="module" th:src="@{/js/all-pages.js}"></script>
+        <script type="module" th:src="@{/js/login.js}"></script>
 
         <link rel="stylesheet" th:href="@{/css/all-pages.css}"/>
         <link rel="stylesheet" th:href="@{/css/login.css}"/>
     </head>
 
     <body class="container">
-        <button id="switch_theme_button" onclick="switchMode()">Mode</button>
+        <button id="switch_theme_button">Mode</button>
 
         <fieldset class="login_container">
             <legend id="login_form">Login Form</legend>
 
             <!-- login form -->
             <form th:action="@{/login}" method="post">
-                <!-- should add gray text on inputs -->
-                <input id="login_username" th:oninput="checkLoginInputs()" type="text" name="username" placeholder="Username"/>
-                <input id="login_password" th:oninput="checkLoginInputs()" type="password" name="password" placeholder="Password"/>
+                <input id="login_username" type="text" name="username" placeholder="Username"/>
+                <input id="login_password" type="password" name="password" placeholder="Password"/>
 
                 <input id="login_submit" type="submit" value="Log in"/>
             </form>
