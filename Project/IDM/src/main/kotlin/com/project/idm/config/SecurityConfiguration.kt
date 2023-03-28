@@ -28,7 +28,7 @@ class SecurityConfiguration : SecurityConfigurerAdapter<DefaultSecurityFilterCha
             .authorizeHttpRequests()
                 .requestMatchers("/hello").hasAuthority("read")
                 .requestMatchers("/verify-token").permitAll()
-                .requestMatchers("/css/**", "/js/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers("/invalidate-token").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/**").hasAnyAuthority("read", "write")

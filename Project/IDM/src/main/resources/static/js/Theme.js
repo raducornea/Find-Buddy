@@ -1,4 +1,3 @@
-import Cookie from './Cookie.js';
 
 
 export default class Theme {
@@ -7,36 +6,25 @@ export default class Theme {
         const container = document.querySelector(".container");
         container.classList.remove("dark-theme");
         container.classList.add("light-theme");
+
+        // set correct image for sun/moon
+        const imgLight = document.getElementById("switch_theme_button-dark-theme");
+        const imgDark = document.getElementById("switch_theme_button-light-theme");
+
+        imgLight.style.visibility = "visible";
+        imgDark.style.visibility = "hidden";
     }
 
     static setDarkTheme() {
         const container = document.querySelector(".container");
         container.classList.remove("light-theme");
         container.classList.add("dark-theme");
-    }
 
-    static setMode() {
-        const theme = Cookie.getCookie('darkThemeCookie');
+        // set correct image for sun/moon
+        const imgLight = document.getElementById("switch_theme_button-dark-theme");
+        const imgDark = document.getElementById("switch_theme_button-light-theme");
 
-        if (theme === "" || theme === "white") {
-            Theme.setLightTheme();
-        } else {
-            Theme.setDarkTheme();
-        }
-    }
-    
-    static switchMode() {
-    
-        let theme = Cookie.getCookie('darkThemeCookie');
-
-        if (theme === "" || theme === "white") {
-            theme = "black";
-            Theme.setDarkTheme();
-        } else {
-            theme = "white";
-            Theme.setLightTheme();
-        }
-    
-        Cookie.setCookie('darkThemeCookie', theme, 7);
+        imgLight.style.visibility = "hidden";
+        imgDark.style.visibility = "visible";
     }
 }
