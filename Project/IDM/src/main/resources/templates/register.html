@@ -3,31 +3,33 @@
 
     <head>
         <title>Register</title>
+
+        <script type="module" th:src="@{/js/Cookie.js}"></script>
+        <script type="module" th:src="@{/js/Theme.js}"></script>
+        <script type="module" th:src="@{/js/all-pages.js}"></script>
+        <script type="module" th:src="@{/js/register.js}"></script>
+
+        <link rel="stylesheet" th:href="@{/css/all-pages.css}"/>
+        <link rel="stylesheet" th:href="@{/css/register.css}"/>
     </head>
 
-    <body>
-        <h1>Register new User</h1>
+    <body class="container">
+        <img th:src="@{/images/light.png}" id="switch_theme_button-light-theme"/>
+        <img th:src="@{/images/dark.png}" id="switch_theme_button-dark-theme"/>
 
-        <form th:action="@{/register}" th:object="${user}" method="post">
-            <div class="form-row">
-                <div>
-                    <label>Username</label>
-                    <input type="text" class="form-control" th:field="*{username}">
-                </div>
+        <fieldset class="register_container">
+            <legend id="register_form">Register Form</legend>
 
-                <div>
-                    <label>Password</label>
-                    <input type="password" class="form-control" th:field="*{password}">
-                </div>
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <input id="register_username" type="text" placeholder="Username" th:field="*{username}"/>
+                <input id="register_password" type="password" placeholder="Password" th:field="*{password}"/>
+                <input id="register_password_confirm" type="password" placeholder="Password Confirm" th:field="*{passwordConfirm}"/>
 
-                <div>
-                    <label>Confirm Password</label>
-                    <input type="password" class="form-control" th:field="*{passwordConfirm}">
-                </div>
-            </div>
+                <input id="register_submit" type="submit" value="Register"/>
 
-            <button type="submit" class="btn btn-primary btn-block mt-3">Register</button>
-        </form>
+                <div class="already_member">Already member? <a href="/login" class="login_now">Login now</a></div>
+            </form>
+        </fieldset>
 
     <!--    to keep for future, we gonna use that in other places -->
 <!--        <form th:action="@{/logout}" method="post">-->
