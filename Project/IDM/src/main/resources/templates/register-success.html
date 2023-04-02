@@ -3,11 +3,38 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
     <head>
-        <title>Hello World!</title>
+        <title>Successfully Registered</title>
+
+        <script type="module" th:src="@{/js/Cookie.js}"></script>
+        <script type="module" th:src="@{/js/Theme.js}"></script>
+        <script type="module" th:src="@{/js/all-pages.js}"></script>
+        <script type="module" th:src="@{/js/register-success.js}"></script>
+
+        <link rel="stylesheet" th:href="@{/css/all-pages.css}"/>
+        <link rel="stylesheet" th:href="@{/css/register-success.css}"/>
     </head>
 
-    <body>
-        <h1 th:inline="text">Successfully Registered!</h1>
+    <body class="container">
+        <div>
+            <img th:src="@{/images/light.png}" id="switch_theme_button-light-theme"/>
+            <img th:src="@{/images/dark.png}" id="switch_theme_button-dark-theme"/>
+        </div>
+
+        <fieldset class="register_succes_container">
+            <legend id="register_succes_form">Successfully Registered</legend>
+            
+            <div class="success_container">
+                <img th:src="@{/images/success_check_dark.png}" id="success_image-light-theme"/>
+                <img th:src="@{/images/success_check_light.png}" id="success_image-dark-theme"/>
+            </div>
+
+            <div class="register_success_message">Registration completed successfully</div>
+            <div class="register_success_message_hint">To login, press the button below to continue.</div>
+
+            <form th:action="@{/login}" method="get">
+                <input id="back_to_login_ok_button" type="submit" value="OK"/>
+            </form>
+        </fieldset>
     </body>
 
 </html>
