@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
-<head>
-    <title>Logout</title>
-</head>
+    <head>
+        <title>Logout</title>
 
-<body>
-    <h1>Are you sure you want to logout?</h1>
-    <form th:action="@{/logout-confirmed}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
+        <script type="module" th:src="@{/js/Cookie.js}"></script>
+        <script type="module" th:src="@{/js/Theme.js}"></script>
+        <script type="module" th:src="@{/js/all-pages.js}"></script>
+        <script type="module" th:src="@{/js/logout.js}"></script>
 
-    <form th:action="@{/}" method="get">
-        <input type="submit" value="Cancel"/>
-    </form>
-</body>
+        <link rel="stylesheet" th:href="@{/css/all-pages.css}"/>
+        <link rel="stylesheet" th:href="@{/css/logout.css}"/>
+    </head>
+
+    <body class="container">
+        <div>
+            <img th:src="@{/images/light.png}" id="switch_theme_button-light-theme"/>
+            <img th:src="@{/images/dark.png}" id="switch_theme_button-dark-theme"/>
+        </div>
+
+        <fieldset class="logout_confirm_container">
+            <legend id="logout_confirm_form">Logout Confirm</legend>
+
+            <div class="logout_confirm_message">Are you sure you want to logout?</div>
+            
+            <div class="form-container">
+                <form th:action="@{/logout-confirmed}" method="post">
+                    <input id="logout_input_button" type="submit" value="Logout"/>
+                </form>
+
+                <form th:action="@{/}" method="get">
+                    <input id="logout_cancel_button" type="submit" value="Cancel"/>
+                </form>
+            </div>
+            
+        </fieldset>
+
+    </body>
 
 </html>

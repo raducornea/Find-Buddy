@@ -1,0 +1,85 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+#switch_theme_button-light-theme, #switch_theme_button-dark-theme {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.logout_confirm_container {
+    width: 80%;
+    max-width: 400px;
+    margin: auto; /* center the form horizontally */
+    
+    /* center everything inside Login Form */
+    text-align: center; 
+
+    /* ensure all elements are sized including padding and border */
+    box-sizing: border-box;
+}
+    
+#logout_confirm_form {
+    font-size: 30px;
+
+    /* center "Login Form" legend */
+    text-align: center; 
+}
+
+.logout_confirm_message-light-theme {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #07033a;
+}
+
+.logout_confirm_message-dark-theme {
+    margin-top: 10px;
+    font-size: 24px;
+    color: #f8fcc5;
+}
+
+.logout-input-submit-light-theme {
+    font-size: 20px;
+    background-color: #0033ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout-input-submit-dark-theme {
+    font-size: 20px;
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+#logout_input_button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    margin-right: 10px; /* add margin between buttons */
+    width: 100%;
+}
+
+#logout_cancel_button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    margin-left: 10px; /* add margin between buttons */
+    width: 100%;
+}
