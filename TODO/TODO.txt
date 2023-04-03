@@ -1,31 +1,6 @@
-2. Cum anume ar trebui sa stochez pozele utilizatorilor?
-Cum le voi identifica?    id specific si numele pozei sa caontine ceva de identificare sau poza criptata cu o cheie care sa fie si element de identificare, mai sunt si alte solutii
-Ma gandeam sa am un fisier cu toti utilizatorii (fisiere)   - baza de date
-si sa am un folder acolo la randul lui numit profile picture si sa o pun acolo      DA
 
 
-3. Banuiesc ca parolele nu ar trebui sa le tin in baza de date, si nici prin aplicatie. Mai degraba sa tin o cheie criptata?
-Poti sa le tii in baze de date dar criptate  - exista functii predefinite in unele limbaje  pt criptare ( cu MD5 de exemplu/)
-
-
-
-
-
-
-
-
-Daca am algoritmi pt password encryption, ar trb sa fac alt modul nou doar pt asa ceva? 
-Adica, sa am un serviciu nou pus pe cu totul alt port? Si fac doar get pe parola criptata cred, nu?
-
-As putea folosi algoritmi de criptare si sa-i evaluez pentru licenta ca la EP? 
-Asta ar insemna ca ar trebui sa-mi fac eu algoritmii de la 0 totusi...
-
-
-lista titluri posibile
-de pus doc pe drive pe care sa-l editez, ok
-
-
-
-
-28.02
-bun, deci. sa nu uit, sa pun poze cu diagramele ER pentru users, roles
+2. Cum anume ar trebui sa stochez pozele utilizatorilor? Cum le voi identifica?    
+id specific si numele pozei sa caontine ceva de identificare sau poza criptata cu o cheie care sa fie si element de identificare, mai sunt si alte solutii
+Ma gandeam sa am un fisier cu toti utilizatorii (fisiere) - baza de date
+si sa am un folder acolo la randul lui numit profile picture si sa o pun acolo DA

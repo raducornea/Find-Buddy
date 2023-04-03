@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head>
+        <title>Successfully Registered</title>
+
+        <script type="module" th:src="@{/js/Cookie.js}"></script>
+        <script type="module" th:src="@{/js/Theme.js}"></script>
+        <script type="module" th:src="@{/js/all-pages.js}"></script>
+        <script type="module" th:src="@{/js/register-fail.js}"></script>
+
+        <link rel="stylesheet" th:href="@{/css/all-pages.css}"/>
+        <link rel="stylesheet" th:href="@{/css/register-fail.css}"/>
+        <link rel="stylesheet" th:href="@{/css/switch-theme-button.css}"/>
+        <link rel="stylesheet" th:href="@{/css/fail-image-check.css}"/>
+    </head>
+
+    <body class="container">
+        <div>
+            <img th:src="@{/images/light.png}" id="switch_theme_button-light-theme"/>
+            <img th:src="@{/images/dark.png}" id="switch_theme_button-dark-theme"/>
+        </div>
+
+        <fieldset class="register_succes_container">
+            <legend id="register_succes_form">Registration Failed</legend>
+            
+            <div class="fail_container">
+                <img th:src="@{/images/fail_check_dark.png}" id="fail_image-light-theme"/>
+                <img th:src="@{/images/fail_check_light.png}" id="fail_image-dark-theme"/>
+            </div>
+
+            <div class="register_fail_message">An error occured</div>
+            <div class="register_fail_message_hint">Press the button below to take over.</div>
+
+            <form th:action="@{/register}" method="get">
+                <input id="back_to_register_button" type="submit" value="Register"/>
+            </form>
+        </fieldset>
+    </body>
+
+</html>

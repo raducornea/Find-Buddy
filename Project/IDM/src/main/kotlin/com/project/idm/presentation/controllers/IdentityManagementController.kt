@@ -1,6 +1,7 @@
 package com.project.idm.presentation.controllers
 
 import com.project.idm.business.interfaces.ITokenService
+import com.project.idm.business.services.UserValidatorService
 import com.project.idm.data.models.UserModel
 import com.project.idm.data.tokens.ExpiryTimes
 import jakarta.servlet.http.Cookie
@@ -21,6 +22,9 @@ class IdentityManagementController {
 
     @Autowired
     private lateinit var tokenService: ITokenService
+
+    @Autowired
+    private lateinit var userValidatorService: UserValidatorService
 
     @GetMapping("/")
     fun gatewayRedirect(principal: Principal, response: HttpServletResponse) {
@@ -56,21 +60,15 @@ class IdentityManagementController {
     @PostMapping("/register")
     fun register(@ModelAttribute userModel: UserModel): ModelAndView {
 
-        // perform logic to register User here + UserProfle
-        println(userModel.getUsername())
-        println(userModel.getPassword())
-        println(userModel.getPasswordConfirm())
+        if (!userValidatorService.isUserRegisterValid(userModel))
+            // todo
+            // should return other model and view for register-fail...
+            return ModelAndView("register-fail")
 
-        //        val passwordEncoder = BCryptPasswordEncoder()
-        //        val password = "12345"
-        //        val hashedPassword = passwordEncoder.encode(password)
-        //        println(hashedPassword)
-
-        // should return DIFFERENT ModelAndviews depending on the status of posting the resource
         return ModelAndView("register-success")
     }
 
-    // known bug: after logging out, even if logged out already, and going in login, you have to press twice to log in
+    // known bug: after logging out, even if logged out already, and going in login, you have to press twice to login
     @GetMapping("/login")
     fun login(
         request: HttpServletRequest,

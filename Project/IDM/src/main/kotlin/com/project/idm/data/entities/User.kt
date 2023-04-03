@@ -16,7 +16,7 @@ class User {
     @Transient
     private var passwordConfirm: String = ""
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
     @JoinTable(
         name = "users_authorities",
         joinColumns = [JoinColumn(name = "user_id")],

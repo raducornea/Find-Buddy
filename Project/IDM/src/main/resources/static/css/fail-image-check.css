@@ -1,0 +1,16 @@
+
+#fail_image-light-theme, #fail_image-dark-theme {
+    resize: both;
+    width: 64xp;
+    height: 64px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.fail_container {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+}
