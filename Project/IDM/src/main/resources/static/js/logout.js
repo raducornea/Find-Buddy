@@ -60,6 +60,7 @@ export default class Logout {
 }
 
 window.onload = function() {
+    document.body.style.opacity = '1';
     Logout.setMode();
 };
 

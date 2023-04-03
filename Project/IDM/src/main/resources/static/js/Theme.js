@@ -27,4 +27,6 @@ export default class Theme {
         imgLight.style.visibility = "hidden";
         imgDark.style.visibility = "visible";
     }
+
+    
 }

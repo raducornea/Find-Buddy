@@ -1,0 +1,16 @@
+
+#success_image-light-theme, #success_image-dark-theme {
+    resize: both;
+    width: 64xp;
+    height: 64px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.success_container {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+}

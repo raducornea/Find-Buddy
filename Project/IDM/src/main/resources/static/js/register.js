@@ -110,6 +110,7 @@ export default class Register {
 }
 
 window.onload = function() {
+    document.body.style.opacity = '1';
     Register.setMode();
 };
 

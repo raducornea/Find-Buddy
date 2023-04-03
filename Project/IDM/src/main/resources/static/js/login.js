@@ -124,6 +124,7 @@ export default class Login {
 }
 
 window.onload = function() {
+    document.body.style.opacity = '1';
     Login.setMode();
 };
 

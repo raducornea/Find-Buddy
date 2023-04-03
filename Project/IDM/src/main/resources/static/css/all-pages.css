@@ -1,3 +1,11 @@
+body {
+    display: flex;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
 .dark-theme {
     background-color: #07033a;
     color: #f8fcc5;

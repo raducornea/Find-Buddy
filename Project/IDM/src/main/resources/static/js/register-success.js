@@ -74,6 +74,7 @@ export default class RegisterSuccess {
 }
 
 window.onload = function() {
+    document.body.style.opacity = '1';
     RegisterSuccess.setMode();
 };
 
