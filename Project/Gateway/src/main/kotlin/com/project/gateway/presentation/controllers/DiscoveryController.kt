@@ -22,8 +22,8 @@ class DiscoveryController {
         @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") cookieJws: String,
     ): ResponseEntity<String> {
 
-        val allowedRoles = listOf("read", "write")
-        val response = authorizationService.authorize(allowedRoles, bearerJws, cookieJws)
+        val allowedAuthorities = listOf("read", "write")
+        val response = authorizationService.authorize(allowedAuthorities, bearerJws, cookieJws)
         return response
     }
 }

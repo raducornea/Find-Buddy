@@ -19,7 +19,7 @@ class AuthorizationService : IAuthorizationService {
     @Autowired
     private lateinit var jsonOperations: IJSONOperationsService
 
-    override fun authorize(allowedRoles: List<String>, bearerJws: String, cookieJws: String): ResponseEntity<String> {
+    override fun authorize(allowedAuthorities: List<String>, bearerJws: String, cookieJws: String): ResponseEntity<String> {
         var token = if (cookieJws == "") bearerJws else cookieJws
         if (token == "") {
             return ResponseEntity.status(HttpStatus.FOUND).location(URI.create("http://localhost:8000/login")).build()
@@ -43,9 +43,9 @@ class AuthorizationService : IAuthorizationService {
             // user json
             val payloadJSON = String(decoder.decode(b64payload))
 
-            val userRoles = jsonOperations.getAuthoritiesFromJSONString(payloadJSON)
-            allowedRoles.forEach {
-                if (userRoles.contains(it)){
+            val userAuthorities = jsonOperations.getAuthoritiesFromJSONString(payloadJSON)
+            allowedAuthorities.forEach {
+                if (userAuthorities.contains(it)){
                     // the actual response if it was allowed
                     return ResponseEntity("Allowed!!!! YAAAAY", HttpStatus.OK)
                 }

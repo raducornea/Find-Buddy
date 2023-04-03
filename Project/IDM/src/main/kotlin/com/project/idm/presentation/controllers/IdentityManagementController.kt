@@ -97,7 +97,12 @@ class IdentityManagementController {
     fun logoutConfirm(
         request: HttpServletRequest,
         response: HttpServletResponse,
+        @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") encryptedToken: String
     ) {
+        // invalidate token if user somehow gets to that uri
+        if (encryptedToken != "") {
+            tokenService.invalidateEncryptedToken(encryptedToken)
+        }
 
         val auth: Authentication = SecurityContextHolder.getContext().authentication
         SecurityContextLogoutHandler().logout(request, response, auth)

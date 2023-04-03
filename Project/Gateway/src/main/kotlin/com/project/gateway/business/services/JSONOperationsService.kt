@@ -30,11 +30,11 @@ class JSONOperationsService : IJSONOperationsService {
             val gson: Gson = GsonBuilder().setPrettyPrinting().create()
             val jsonObject: JsonObject = gson.fromJson(stringToTransform, JsonObject::class.java)
 
-            val jsonElement: JsonElement = jsonObject.getAsJsonArray("roles")
-            val rolesArray: Array<String> = gson.fromJson(jsonElement, Array<String>::class.java)
+            val jsonElement: JsonElement = jsonObject.getAsJsonArray("authorities")
+            val authoritiesArray: Array<String> = gson.fromJson(jsonElement, Array<String>::class.java)
 
-            val rolesList: List<String> = rolesArray.asList()
-            return rolesList
+            val authoritiesList: List<String> = authoritiesArray.asList()
+            return authoritiesList
 
         } catch (exception: Exception) {
             return listOf()

@@ -4,5 +4,5 @@ import org.springframework.http.ResponseEntity
 
 interface IAuthorizationService {
 
-    fun authorize(allowedRoles: List<String>, bearerJws: String, cookieJws: String): ResponseEntity<String>
+    fun authorize(allowedAuthorities: List<String>, bearerJws: String, cookieJws: String): ResponseEntity<String>
 }

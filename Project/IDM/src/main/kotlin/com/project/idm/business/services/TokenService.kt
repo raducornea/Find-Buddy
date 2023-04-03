@@ -54,7 +54,7 @@ class TokenService : ITokenService {
             .withClaim("id", userFound.getId())
             .withClaim("username", username)
             .withClaim("password", securityUser.password)
-            .withClaim("roles", authorities.toList())
+            .withClaim("authorities", authorities.toList())
             .withIssuedAt(nowDate)
             .withNotBefore(nowDate)
             .withExpiresAt(expiryDate)
