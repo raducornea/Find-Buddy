@@ -4,3 +4,10 @@
 id specific si numele pozei sa caontine ceva de identificare sau poza criptata cu o cheie care sa fie si element de identificare, mai sunt si alte solutii
 Ma gandeam sa am un fisier cu toti utilizatorii (fisiere) - baza de date
 si sa am un folder acolo la randul lui numit profile picture si sa o pun acolo DA
+
+
+
+Algoritmi de recomandat prieteni?
+https://www.celential.ai/blog/best-ai-sourcing-tools/
+
+

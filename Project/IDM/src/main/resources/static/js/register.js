@@ -49,6 +49,18 @@ export default class Register {
             container.classList.add("register-input-submit-light-theme");
         });
 
+        const labelForInputs = document.querySelectorAll(".register_container .label_for_input");
+        labelForInputs.forEach(label => {
+            label.classList.remove("label_for_input-dark-theme");
+            label.classList.add("label_for_input-light-theme");
+        });
+
+        const labelForHintOrError = document.querySelectorAll(".register_container .label_for_hint_or_error");
+        labelForHintOrError.forEach(label => {
+            label.classList.remove("label_for_hint_or_error-dark-theme");
+            label.classList.add("label_for_hint_or_error-light-theme");
+        });
+
         const containerAlreadyMember = document.querySelector(".already_member");
         containerAlreadyMember.classList.remove("already_member-dark-theme");
         containerAlreadyMember.classList.add("already_member-light-theme");
@@ -63,6 +75,18 @@ export default class Register {
         containersInputs.forEach(container => {
             container.classList.remove("register-input-submit-light-theme");
             container.classList.add("register-input-submit-dark-theme");
+        });
+
+        const labelForInputs = document.querySelectorAll(".register_container .label_for_input");
+        labelForInputs.forEach(label => {
+            label.classList.remove("label_for_input-light-theme");
+            label.classList.add("label_for_input-dark-theme");
+        });
+
+        const labelForHintOrError = document.querySelectorAll(".register_container .label_for_hint_or_error");
+        labelForHintOrError.forEach(label => {
+            label.classList.remove("label_for_hint_or_error-light-theme");
+            label.classList.add("label_for_hint_or_error-dark-theme");
         });
 
         const containerAlreadyMember = document.querySelector(".already_member");
@@ -135,3 +159,16 @@ document.getElementById('register_password_confirm').addEventListener('input', (
     Register.checkRegisterInputs();
 });
 
+// const avatarInput = document.getElementById('avatar');
+// const avatarPreview = document.getElementById('avatar-preview');
+
+// avatarInput.addEventListener('change', function() {
+//     const file = this.files[0];
+//     const reader = new FileReader();
+
+//     reader.addEventListener('load', function() {
+//         avatarPreview.src = reader.result;
+//     });
+
+//     reader.readAsDataURL(file);
+// });

@@ -23,7 +23,10 @@
 
             <!-- login form -->
             <form th:action="@{/login}" method="post">
+                <div class="label_for_input">Username</div>
                 <input id="login_username" type="text" name="username" placeholder="Username"/>
+
+                <div class="label_for_input">Password</div>
                 <input id="login_password" type="password" name="password" placeholder="Password"/>
                 
                 <div class="forgot_password">Forgot password?</div>

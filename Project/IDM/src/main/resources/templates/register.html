@@ -22,20 +22,39 @@
             <legend id="register_form">Register Form</legend>
 
             <form th:action="@{/register}" th:object="${user}" method="post">
-                <input id="register_username" type="text" placeholder="Username" th:field="*{username}"/>
-                <input id="register_password" type="password" placeholder="Password" th:field="*{password}"/>
-                <input id="register_password_confirm" type="password" placeholder="Password Confirm" th:field="*{passwordConfirm}"/>
+                
+                <!-- <img id="avatar-preview" th:src="@{/images/avatar.png}" alt="Avatar" width="128px" height="128px">
+                <input type="file" id="avatar" name="avatar" accept="image/jpeg, image/png"> -->
+
+                <div class="label_for_input">Username</div>
+                <input id="register_username" type="text" placeholder="e.g SuperUser23" th:field="*{username}"/>
+                <div class="label_for_hint_or_error">Required</div>
+
+                <div class="label_for_input">Password</div>
+                <input id="register_password" type="password" placeholder="" th:field="*{password}"/>
+                <div class="label_for_hint_or_error">Passwords must be at least 3 characters long</div>
+
+                <div class="label_for_input">Password confirm</div>
+                <input id="register_password_confirm" type="password" placeholder="" th:field="*{passwordConfirm}"/>
+                <div class="label_for_hint_or_error">Passwords are required and must match</div>
+                
+                <div class="label_for_input">First name</div>
+                <input id="register_first_name" type="text" placeholder="" th:field="*{firstName}"/>
+                <div class="label_for_hint_or_error">Required</div>
+                
+                <div class="label_for_input">Last name</div>
+                <input id="register_last_name" type="text" placeholder="" th:field="*{lastName}"/>
+                <div class="label_for_hint_or_error">Required</div>
+                
+                <div class="label_for_input">Email</div>
+                <input id="register_email" type="email" placeholder="e.g example@gmail.com" th:field="*{email}"/>
+                <div class="label_for_hint_or_error">Required</div>
 
                 <input id="register_submit" type="submit" value="Register"/>
 
                 <div class="already_member">Already member? <a href="/login" class="login_now">Login now</a></div>
             </form>
         </fieldset>
-
-    <!--    to keep for future, we gonna use that in other places -->
-<!--        <form th:action="@{/logout}" method="post">-->
-<!--            <input type="submit" value="Sign Out"/>-->
-<!--        </form>-->
     </body>
 
 </html>

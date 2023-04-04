@@ -50,6 +50,7 @@
 }
 
 .register_container input[type="text"],
+.register_container input[type="email"],
 .register_container input[type="password"] {
     display: block;
     width: 100%;

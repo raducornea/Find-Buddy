@@ -9,7 +9,7 @@
     /* ensure all elements are sized including padding and border */
     box-sizing: border-box;
 }
-    
+
 #login_form {
     font-size: 30px;
 
@@ -100,7 +100,7 @@
 .login_message-dark-theme {
     margin-top: 10px;
     font-size: 24px;
-    color: #FF7070;
+    color: #ff6c6c;
     font-weight: bolder;
     text-shadow: 
     #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px,
@@ -110,7 +110,7 @@
 .login_message-light-theme {
     margin-top: 10px;
     font-size: 24px;
-    color: #AD0000;
+    color: #b00404;
     font-weight: bolder;
     text-shadow: 
     #fff 0px 0px 1px,   #fff 0px 0px 1px,   #fff 0px 0px 1px,

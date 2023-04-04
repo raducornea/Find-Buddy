@@ -2,7 +2,7 @@ package com.project.idm.presentation.controllers
 
 import com.project.idm.business.interfaces.ITokenService
 import com.project.idm.business.services.UserValidatorService
-import com.project.idm.data.models.UserModel
+import com.project.idm.data.dtos.UserDTO
 import com.project.idm.data.tokens.ExpiryTimes
 import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.HttpServletRequest
@@ -50,7 +50,7 @@ class IdentityManagementController {
             return redirectView
 
         } else {
-            val userModel = UserModel()
+            val userModel = UserDTO()
             val modelAndView = ModelAndView("register")
             modelAndView.addObject("user", userModel)
             return modelAndView
@@ -58,13 +58,9 @@ class IdentityManagementController {
     }
 
     @PostMapping("/register")
-    fun register(@ModelAttribute userModel: UserModel): ModelAndView {
-
+    fun register(@ModelAttribute userModel: UserDTO): ModelAndView {
         if (!userValidatorService.isUserRegisterValid(userModel))
-            // todo
-            // should return other model and view for register-fail...
             return ModelAndView("register-fail")
-
         return ModelAndView("register-success")
     }
 

@@ -2,7 +2,7 @@ package com.project.idm.business.services
 
 import com.project.idm.data.entities.Authority
 import com.project.idm.data.entities.User
-import com.project.idm.data.models.UserModel
+import com.project.idm.data.dtos.UserDTO
 import com.project.idm.persistence.repositories.AuthorityRepository
 import com.project.idm.persistence.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,11 +24,11 @@ class UserValidatorService  {
     @Autowired
     private lateinit var authorityRepository: AuthorityRepository
 
-    fun checkUserFieldsValidity(userModel: UserModel): Boolean {
+    fun checkUserFieldsValidity(userDTO: UserDTO): Boolean {
 
-        val username = userModel.getUsername()
-        val password = userModel.getPassword()
-        val passwordConfirm = userModel.getPasswordConfirm()
+        val username = userDTO.getUsername()
+        val password = userDTO.getPassword()
+        val passwordConfirm = userDTO.getPasswordConfirm()
 
         val validUsername = username.length in 2..20
         val validPassword = password == passwordConfirm && password.length > 2
@@ -37,7 +37,7 @@ class UserValidatorService  {
         return validFields
     }
 
-    fun isUserRegisterValid(userModel: UserModel): Boolean {
+    fun isUserRegisterValid(userModel: UserDTO): Boolean {
 
         // 1. validate fields
         val validFields = checkUserFieldsValidity(userModel)

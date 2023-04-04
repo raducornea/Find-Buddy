@@ -43,6 +43,12 @@ export default class Login {
             container.classList.add("login-input-submit-light-theme");
         });
 
+        const labelForInputs = document.querySelectorAll(".login_container .label_for_input");
+        labelForInputs.forEach(label => {
+            label.classList.remove("label_for_input-dark-theme");
+            label.classList.add("label_for_input-light-theme");
+        });
+
         const containerNotAMember = document.querySelector(".not_a_member");
         containerNotAMember.classList.remove("not_a_member-dark-theme");
         containerNotAMember.classList.add("not_a_member-light-theme");
@@ -67,6 +73,12 @@ export default class Login {
         containersInputs.forEach(container => {
             container.classList.remove("login-input-submit-light-theme");
             container.classList.add("login-input-submit-dark-theme");
+        });
+
+        const labelForInputs = document.querySelectorAll(".login_container .label_for_input");
+        labelForInputs.forEach(label => {
+            label.classList.remove("label_for_input-light-theme");
+            label.classList.add("label_for_input-dark-theme");
         });
 
         const containerNotAMember = document.querySelector(".not_a_member");

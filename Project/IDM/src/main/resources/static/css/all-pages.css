@@ -15,3 +15,43 @@ body {
     background-color: #f8fcc5;
     color: #07033a;
 }
+
+.label_for_input-dark-theme {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #f8fcc5;
+    text-align: left; 
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.label_for_input-light-theme {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #07033a;
+    text-align: left;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.label_for_hint_or_error-dark-theme {
+    margin-top: -4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #B6B89F;
+    text-align: left; 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.label_for_hint_or_error-light-theme {
+    margin-top: -4px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #494760;
+    text-align: left;
+    text-decoration: none;
+    font-weight: bold;
+}
