@@ -26,7 +26,7 @@ class SecurityConfiguration : SecurityConfigurerAdapter<DefaultSecurityFilterCha
         return http
 
             .authorizeHttpRequests()
-                .requestMatchers("/verify-token").permitAll()
+                .requestMatchers("/verify-token", "/check-username/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers("/invalidate-token").permitAll()
                 .requestMatchers("/register").permitAll()

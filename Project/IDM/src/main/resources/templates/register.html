@@ -23,12 +23,9 @@
 
             <form th:action="@{/register}" th:object="${user}" method="post">
                 
-                <!-- <img id="avatar-preview" th:src="@{/images/avatar.png}" alt="Avatar" width="128px" height="128px">
-                <input type="file" id="avatar" name="avatar" accept="image/jpeg, image/png"> -->
-
                 <div class="label_for_input">Username</div>
-                <input id="register_username" type="text" placeholder="e.g SuperUser23" th:field="*{username}"/>
-                <div class="label_for_hint_or_error">Required</div>
+                <input id="register_username" type="text" placeholder="e.g. SuperUser23" th:field="*{username}"/>
+                <div class="label_for_hint_or_error">Required and must be unique</div>
 
                 <div class="label_for_input">Password</div>
                 <input id="register_password" type="password" placeholder="" th:field="*{password}"/>
@@ -47,7 +44,7 @@
                 <div class="label_for_hint_or_error">Required</div>
                 
                 <div class="label_for_input">Email</div>
-                <input id="register_email" type="email" placeholder="e.g example@gmail.com" th:field="*{email}"/>
+                <input id="register_email" type="email" placeholder="e.g. example@gmail.com" th:field="*{email}"/>
                 <div class="label_for_hint_or_error">Required</div>
 
                 <input id="register_submit" type="submit" value="Register"/>

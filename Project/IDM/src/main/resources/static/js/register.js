@@ -4,19 +4,140 @@ import Cookie from './Cookie.js';
 
 export default class Register {
 
-    static validateInputs(username, password, password_confirm) {
-        if (username === "" || password === "" || password_confirm === "") return false;
-        if (password != password_confirm) return false;
-        return true;
+    static debounceTimer;
+
+    static checkUsernameBackend(username) {
+        if (!username) return Promise.resolve(false);
+        if (Register.debounceTimer) clearTimeout(Register.debounceTimer);
+      
+        // Return a Promise that resolves with a boolean value
+        return new Promise((resolve, reject) => {
+            Register.debounceTimer = setTimeout(() => {
+            fetch(`/check-username/${username}`)
+              .then(response => response.json())
+              .then(data => {
+                resolve(data["available"]);
+              })
+              .catch(error => {
+                console.error(error);
+                reject(error);
+              });
+          }, 250);
+        });
+    }
+
+    static applyStyleSheetToInput(input, style) {
+        if (style === "red"){
+            input.classList.remove("focus");
+            input.classList.remove("valid");
+            input.classList.add("invalid");
+            input.style.border="1px solid red";
+        } else if (style === "green") {
+            input.classList.remove("focus");
+            input.classList.remove("invalid");
+            input.classList.add("valid");
+            input.style.border="1px solid green";
+        } else {
+            input.classList.remove("invalid");
+            input.classList.remove("valid");
+            input.classList.add("focus");
+            input.style.border="1px solid blue";
+        }
+    }
+
+    static async checkUsername(onlyCheck) {
+        const inputUsername = document.getElementById("register_username");
+        const username = inputUsername.value;
+        const usernameRegex = /^[a-zA-Z0-9_.]+$/
+        const usernameAvailable = await Register.checkUsernameBackend(username);
+
+        if (username === "" || username.length < 2 || !usernameRegex.test(username) || !usernameAvailable) {
+            if (onlyCheck) return false;
+            Register.applyStyleSheetToInput(inputUsername, "red");
+        } else {
+            Register.applyStyleSheetToInput(inputUsername, "green");
+            return true;
+        }
+    }
+    
+    static checkPassword(onlyCheck) {
+        const inputPassword = document.getElementById("register_password");
+        const value = inputPassword.value;
+        if (value === "" || value.length < 3) {
+            if (onlyCheck) return false;
+            Register.applyStyleSheetToInput(inputPassword, "red");
+        } else {
+            Register.applyStyleSheetToInput(inputPassword, "green");
+            return true;
+        }
+    }
+    
+    static checkPasswordConfirm(onlyCheck) {
+        const inputPassword = document.getElementById("register_password");
+        const inputPasswordConfirm = document.getElementById("register_password_confirm");
+        const password = inputPassword.value;
+        const passwordConfirm = inputPasswordConfirm.value;
+        if (passwordConfirm === "" || passwordConfirm != password) {
+            if (onlyCheck) return false;
+            Register.applyStyleSheetToInput(inputPasswordConfirm, "red");
+        } else {
+            Register.applyStyleSheetToInput(inputPasswordConfirm, "green");
+            return true;
+        }
+    }
+    
+    static checkFirstName(onlyCheck) {
+        const inputFirstName = document.getElementById("register_first_name");
+        const value = inputFirstName.value;
+        if (value === "") {
+            if (onlyCheck) return false;
+            Register.applyStyleSheetToInput(inputFirstName, "red");
+        } else {
+            Register.applyStyleSheetToInput(inputFirstName, "green");
+            return true;
+        }
+    }
+    
+    static checkLastName(onlyCheck) {
+        const inputLastName = document.getElementById("register_last_name");
+        const value = inputLastName.value;
+        if (value === "") {
+            if (onlyCheck) return false;
+            Register.applyStyleSheetToInput(inputLastName, "red");
+        } else {
+            Register.applyStyleSheetToInput(inputLastName, "green");
+            return true;
+        }
+    }
+    
+    static checkEmail(onlyCheck) {
+        const inputEmail = document.getElementById("register_email");
+        const value = inputEmail.value;
+        if (value === "") {
+            if (onlyCheck) return false;
+            Register.applyStyleSheetToInput(inputEmail, "red");
+        } else {
+            Register.applyStyleSheetToInput(inputEmail, "green");
+            return true;
+        }
+    }
+
+    static validateInputs() {
+        const validUsername = Register.checkUsername(true);
+        const validPassword = Register.checkPassword(true);
+        const validPasswordConfirm = Register.checkPasswordConfirm(true);
+        const validFirstName = Register.checkFirstName(true);
+        const validLastName = Register.checkLastName(true);
+        const validMail = Register.checkEmail(true);
+        
+        const validAllFields = validUsername && validPassword && validPasswordConfirm && validFirstName && validLastName && validMail
+        return validAllFields
     }
 
     static checkRegisterInputs() {
 
-        const username = document.getElementById("register_username").value;
-        const password = document.getElementById("register_password").value;
-        const confirm_password = document.getElementById("register_password_confirm").value;
         const theme = Cookie.getCookie('darkThemeCookie');
-        const valid = this.validateInputs(username, password, confirm_password);
+        const valid = Register.validateInputs();
 
         const register_submit = document.getElementById("register_submit");
         if (theme === "" || theme === "white") {
@@ -147,28 +268,73 @@ document.getElementById('switch_theme_button-light-theme').addEventListener('cli
     Register.switchMode();
 });
 
-document.getElementById('register_username').addEventListener('input', () => {
+document.getElementById('register_username').addEventListener('input', async () => {
     Register.checkRegisterInputs();
+    Register.checkUsername();
 });
 
 document.getElementById('register_password').addEventListener('input', () => {
     Register.checkRegisterInputs();
+    Register.checkPassword();
+    Register.checkPasswordConfirm();
 });
 
 document.getElementById('register_password_confirm').addEventListener('input', () => {
     Register.checkRegisterInputs();
+    Register.checkPasswordConfirm();
 });
 
-// const avatarInput = document.getElementById('avatar');
-// const avatarPreview = document.getElementById('avatar-preview');
+document.getElementById('register_first_name').addEventListener('input', () => {
+    Register.checkRegisterInputs();
+    Register.checkFirstName();
+});
 
-// avatarInput.addEventListener('change', function() {
-//     const file = this.files[0];
-//     const reader = new FileReader();
+document.getElementById('register_last_name').addEventListener('input', () => {
+    Register.checkRegisterInputs();
+    Register.checkLastName();
+});
 
-//     reader.addEventListener('load', function() {
-//         avatarPreview.src = reader.result;
-//     });
+document.getElementById('register_email').addEventListener('input', () => {
+    Register.checkRegisterInputs();
+    Register.checkEmail();
+});
 
-//     reader.readAsDataURL(file);
-// });
+// events for fields
+const containersInputs = document.querySelectorAll(".register_container input");
+containersInputs.forEach(container => {
+    
+    container.addEventListener('focus', () => {
+        Register.applyStyleSheetToInput(container, "blue");
+    });
+});
+
+const usernameInput = document.getElementById("register_username");
+const passwordInput = document.getElementById("register_password");
+const passwordConfirmInput = document.getElementById("register_password_confirm");
+const firstNameInput = document.getElementById("register_first_name");
+const lastNameInput = document.getElementById("register_last_name");
+const emailInput = document.getElementById("register_email");
+
+// we have to use anonymous functions insteaad of named functions
+// also, when passing functions like that, either use anonymous functions (better), either Register.checkUsername
+const events = ["blur"];
+events.forEach(eventType => {
+    usernameInput.addEventListener(eventType, function() {
+        Register.checkUsername();
+    });
+    passwordInput.addEventListener(eventType, function() {
+        Register.checkPassword();
+    });
+    passwordConfirmInput.addEventListener(eventType, function() {
+        Register.checkPasswordConfirm();
+    });
+    firstNameInput.addEventListener(eventType, function() {
+        Register.checkFirstName();
+    });
+    lastNameInput.addEventListener(eventType, function() {
+        Register.checkLastName();
+    });
+    emailInput.addEventListener(eventType, function() {
+        Register.checkEmail();
+    });
+});

@@ -97,3 +97,26 @@
     background-color: #f8fcc5;
     cursor: not-allowed;
 }
+
+/* remove browser autocomplete background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 40px #CDF2FE inset !important;
+}
+
+input:focus {
+    border: 1px solid bue;
+    background-color: #CDF2FE; /* light blue but lighter */
+}
+
+input.invalid {
+    border: 1px solid red;
+    background-color: #FAC9C9; /* light red but lighter */
+}
+
+input.valid {
+    border: 1px solid green;
+    background-color: #B3E8CA; /* light green but lighter */
+}
