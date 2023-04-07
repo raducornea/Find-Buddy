@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain
  */
 @Configuration
 @EnableWebSecurity
-class SecurityConfiguration : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
+class SecurityConfig : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
 
     @Bean
     @Throws(Exception::class)

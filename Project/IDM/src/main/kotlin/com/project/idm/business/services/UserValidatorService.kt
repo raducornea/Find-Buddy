@@ -6,8 +6,13 @@ import com.project.idm.data.dtos.UserDTO
 import com.project.idm.persistence.repositories.AuthorityRepository
 import com.project.idm.persistence.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
 
 
 @Service
@@ -37,15 +42,15 @@ class UserValidatorService  {
         return validFields
     }
 
-    fun isUserRegisterValid(userModel: UserDTO): Boolean {
+    fun isUserRegisterValid(userDTO: UserDTO): Boolean {
 
         // 1. validate fields
-        val validFields = checkUserFieldsValidity(userModel)
+        val validFields = checkUserFieldsValidity(userDTO)
         if (!validFields) return false
 
         // IMPORTANT: can't insert user before making sure in both DBs we can insert it!
         // that's why we check before posting
-        val username = userModel.getUsername()
+        val username = userDTO.getUsername()
 
         // 2. check if it's already in db (IDM Service)
         val userFound = userRepository.findUserByUsername(username)
@@ -60,25 +65,27 @@ class UserValidatorService  {
         try {
             // post in IDM Service
             val passwordEncoder = BCryptPasswordEncoder()
-            val hashedPassword = passwordEncoder.encode(userModel.getPassword())
+            val hashedPassword = passwordEncoder.encode(userDTO.getPassword())
 
             val authorities = mutableSetOf<Authority>()
             val readAuthority = authorityRepository.findAuthorityByName("read")
             authorities.add(readAuthority)
 
             val user = User()
-            user.setUsername(userModel.getUsername())
+            user.setUsername(userDTO.getUsername())
             user.setPassword(hashedPassword)
             user.setAuthorities(authorities)
 
             userRepository.save(user)
 
-            println(userModel.getUsername())
-            println(userModel.getPassword())
-            println(userModel.getPasswordConfirm())
+            println(userDTO.getUsername())
+            println(userDTO.getPassword())
+            println(userDTO.getPasswordConfirm())
 
             //todo
             // post in Profile Service
+            val requestUrl = "http://localhost:8002/hello"
+            sendRequest(requestUrl, userDTO)
 
         } catch (exception: Exception) {
             println("$exception")
@@ -88,5 +95,16 @@ class UserValidatorService  {
         return true
     }
 
+
+    fun sendRequest(url: String, userDTO: UserDTO) {
+        val restTemplate = RestTemplate()
+        val headers = HttpHeaders()
+        headers.contentType = MediaType.APPLICATION_JSON
+
+        val request = HttpEntity(userDTO, headers)
+        val response = restTemplate.postForObject(url, request, String::class.java)
+
+        println("Response: $response")
+    }
 
 }
