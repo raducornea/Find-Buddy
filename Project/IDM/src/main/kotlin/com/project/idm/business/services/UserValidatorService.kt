@@ -64,27 +64,21 @@ class UserValidatorService  {
         user.setPassword(hashedPassword)
         user.setAuthorities(authorities)
 
+        // NOW WE MUST post in IDM Service, to get its id
+        userRepository.save(user)
+
         // 3. try posting the user profile in the Profile Service
-        userDTO.setIdmId(user.getId()) // we NEED to set the id, so we can find it easily through tables
+        // we NEED to set the id, so we can find it easily through tables
+        userDTO.setIdmId(userRepository.findUserByUsername(user.getUsername()).get().getId())
         val requestUrl = "http://localhost:8002/new-profile"
-        val response = sendRequest(requestUrl, userDTO) ?: return false
-        if (response.statusCode != HttpStatus.CREATED) {
-            return false
-        }
-
-        // 4. post in IDM Service the User
-        try {
-            // post in IDM Service
-            userRepository.save(user)
-
-        } catch (exception: Exception) {
-            println("$exception")
+        val response = sendRequest(requestUrl, userDTO)
+        if (response == null || response.statusCode != HttpStatus.CREATED) {
+            userRepository.delete(user)
             return false
         }
 
         return true
     }
-
 
     private fun sendRequest(url: String, userDTO: UserDTO): ResponseEntity<String>? {
         val restTemplate = RestTemplate()
