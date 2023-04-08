@@ -18,6 +18,7 @@ import java.security.Principal
 
 
 @RestController
+@CrossOrigin
 class IdentityManagementController {
 
     @Autowired

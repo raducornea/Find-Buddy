@@ -6,6 +6,26 @@ export default class Register {
 
     static debounceTimer;
 
+    static checkEmailBackend(email) {
+        if (!email) return Promise.resolve(false);
+        if (Register.debounceTimer) clearTimeout(Register.debounceTimer);
+      
+        // Return a Promise that resolves with a boolean value
+        return new Promise((resolve, reject) => {
+            Register.debounceTimer = setTimeout(() => {
+            fetch(`http://localhost:8002/check-email/${email}`)
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data["available"]);
+                })
+                .catch(error => {
+                    console.error(error);
+                    reject(error);
+                });
+            }, 250);
+        });
+    }
+
     static checkUsernameBackend(username) {
         if (!username) return Promise.resolve(false);
         if (Register.debounceTimer) clearTimeout(Register.debounceTimer);
@@ -14,15 +34,15 @@ export default class Register {
         return new Promise((resolve, reject) => {
             Register.debounceTimer = setTimeout(() => {
             fetch(`/check-username/${username}`)
-              .then(response => response.json())
-              .then(data => {
-                resolve(data["available"]);
-              })
-              .catch(error => {
-                console.error(error);
-                reject(error);
-              });
-          }, 250);
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data["available"]);
+                  })
+                .catch(error => {
+                    console.error(error);
+                    reject(error);
+                });
+            }, 250);
         });
     }
 
@@ -110,10 +130,12 @@ export default class Register {
         }
     }
     
-    static checkEmail(onlyCheck) {
+    static async checkEmail(onlyCheck) {
         const inputEmail = document.getElementById("register_email");
-        const value = inputEmail.value;
-        if (value === "") {
+        const email = inputEmail.value;
+        const emailAvailable = await Register.checkEmailBackend(email);
+        
+        if (email === "" || !emailAvailable) {
             if (onlyCheck) return false;
             Register.applyStyleSheetToInput(inputEmail, "red");
         } else {
@@ -122,22 +144,22 @@ export default class Register {
         }
     }
 
-    static validateInputs() {
-        const validUsername = Register.checkUsername(true);
-        const validPassword = Register.checkPassword(true);
-        const validPasswordConfirm = Register.checkPasswordConfirm(true);
-        const validFirstName = Register.checkFirstName(true);
-        const validLastName = Register.checkLastName(true);
-        const validMail = Register.checkEmail(true);
+    static async validateInputs() {
+        const validUsername = await Register.checkUsername(true);
+        const validPassword = await Register.checkPassword(true);
+        const validPasswordConfirm = await Register.checkPasswordConfirm(true);
+        const validFirstName = await Register.checkFirstName(true);
+        const validLastName = await Register.checkLastName(true);
+        const validMail = await Register.checkEmail(true);
         
         const validAllFields = validUsername && validPassword && validPasswordConfirm && validFirstName && validLastName && validMail
         return validAllFields
     }
 
-    static checkRegisterInputs() {
+    static async checkRegisterInputs() {
 
         const theme = Cookie.getCookie('darkThemeCookie');
-        const valid = Register.validateInputs();
+        const valid = await Register.validateInputs();
 
         const register_submit = document.getElementById("register_submit");
         if (theme === "" || theme === "white") {
@@ -294,7 +316,7 @@ document.getElementById('register_last_name').addEventListener('input', () => {
     Register.checkLastName();
 });
 
-document.getElementById('register_email').addEventListener('input', () => {
+document.getElementById('register_email').addEventListener('input', async () => {
     Register.checkRegisterInputs();
     Register.checkEmail();
 });

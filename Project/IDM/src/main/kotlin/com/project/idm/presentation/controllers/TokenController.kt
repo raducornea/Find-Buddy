@@ -4,11 +4,13 @@ import com.project.idm.business.interfaces.ICryptographyService
 import com.project.idm.business.interfaces.ITokenService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.CookieValue
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
+@CrossOrigin
 class TokenController {
 
     @Autowired

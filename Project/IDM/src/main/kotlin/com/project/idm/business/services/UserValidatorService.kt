@@ -6,12 +6,10 @@ import com.project.idm.data.dtos.UserDTO
 import com.project.idm.persistence.repositories.AuthorityRepository
 import com.project.idm.persistence.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
+import org.springframework.http.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestTemplate
 
 
@@ -19,9 +17,6 @@ import org.springframework.web.client.RestTemplate
 //class UserValidatorService : IUserValidatorService {
 class UserValidatorService  {
 
-//    override fun checkUserFieldsValidity(userModel: UserModel): String {
-//        return ""
-//    }
 
     @Autowired
     private lateinit var userRepository: UserRepository
@@ -56,36 +51,31 @@ class UserValidatorService  {
         val userFound = userRepository.findUserByUsername(username)
         if (userFound.isPresent) return false
 
-        // todo
-        // 3. check if it's already in db (Profile Service)
+        // after that, we can build the user for IDM, but NOT post it YET
+        val passwordEncoder = BCryptPasswordEncoder()
+        val hashedPassword = passwordEncoder.encode(userDTO.getPassword())
 
-        // todo
-        // 4. post in IDM Service and Profile Service the User and Profile
-        // perform logic to register User here + UserProfle
+        val authorities = mutableSetOf<Authority>()
+        val readAuthority = authorityRepository.findAuthorityByName("read")
+        authorities.add(readAuthority)
+
+        val user = User()
+        user.setUsername(userDTO.getUsername())
+        user.setPassword(hashedPassword)
+        user.setAuthorities(authorities)
+
+        // 3. try posting the user profile in the Profile Service
+        userDTO.setIdmId(user.getId()) // we NEED to set the id, so we can find it easily through tables
+        val requestUrl = "http://localhost:8002/new-profile"
+        val response = sendRequest(requestUrl, userDTO) ?: return false
+        if (response.statusCode != HttpStatus.CREATED) {
+            return false
+        }
+
+        // 4. post in IDM Service the User
         try {
             // post in IDM Service
-            val passwordEncoder = BCryptPasswordEncoder()
-            val hashedPassword = passwordEncoder.encode(userDTO.getPassword())
-
-            val authorities = mutableSetOf<Authority>()
-            val readAuthority = authorityRepository.findAuthorityByName("read")
-            authorities.add(readAuthority)
-
-            val user = User()
-            user.setUsername(userDTO.getUsername())
-            user.setPassword(hashedPassword)
-            user.setAuthorities(authorities)
-
             userRepository.save(user)
-
-            println(userDTO.getUsername())
-            println(userDTO.getPassword())
-            println(userDTO.getPasswordConfirm())
-
-            //todo
-            // post in Profile Service
-            val requestUrl = "http://localhost:8002/hello"
-            sendRequest(requestUrl, userDTO)
 
         } catch (exception: Exception) {
             println("$exception")
@@ -96,15 +86,20 @@ class UserValidatorService  {
     }
 
 
-    fun sendRequest(url: String, userDTO: UserDTO) {
+    private fun sendRequest(url: String, userDTO: UserDTO): ResponseEntity<String>? {
         val restTemplate = RestTemplate()
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
 
         val request = HttpEntity(userDTO, headers)
-        val response = restTemplate.postForObject(url, request, String::class.java)
 
-        println("Response: $response")
+        return try {
+            restTemplate.exchange(url, HttpMethod.POST, request, String::class.java)
+        } catch (ex: HttpClientErrorException) {
+            ResponseEntity.status(ex.statusCode).body(ex.responseBodyAsString)
+        } catch (ex: Exception) {
+            null
+        }
     }
 
 }

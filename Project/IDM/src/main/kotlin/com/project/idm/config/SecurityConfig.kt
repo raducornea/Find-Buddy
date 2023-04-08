@@ -45,6 +45,7 @@ class SecurityConfig : SecurityConfigurerAdapter<DefaultSecurityFilterChain, Htt
                 .permitAll()
                 .and()
 
+            .cors().disable()
             .build()
     }
 

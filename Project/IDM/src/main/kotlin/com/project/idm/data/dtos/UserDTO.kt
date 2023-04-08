@@ -5,6 +5,7 @@ package com.project.idm.data.dtos
  */
 class UserDTO {
 
+    private var idmId: Int = 0
     private var username: String = ""
     private var password: String = ""
     private var passwordConfirm: String = ""
@@ -12,6 +13,7 @@ class UserDTO {
     private var lastName: String = ""
     private var email: String = ""
 
+    fun getIdmId(): Int = idmId
     fun getUsername(): String = username
     fun getPassword(): String = password
     fun getPasswordConfirm(): String = passwordConfirm
@@ -19,6 +21,9 @@ class UserDTO {
     fun getLastName(): String = lastName
     fun getEmail(): String = email
 
+    fun setIdmId(idmId: Int) {
+        this.idmId = idmId
+    }
     fun setUsername(username: String) {
         this.username = username
     }
