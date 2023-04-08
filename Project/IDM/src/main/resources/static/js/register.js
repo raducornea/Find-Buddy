@@ -80,7 +80,7 @@ export default class Register {
         }
     }
     
-    static checkPassword(onlyCheck) {
+    static async checkPassword(onlyCheck) {
         const inputPassword = document.getElementById("register_password");
         const value = inputPassword.value;
         if (value === "" || value.length < 3) {
@@ -92,7 +92,7 @@ export default class Register {
         }
     }
     
-    static checkPasswordConfirm(onlyCheck) {
+    static async checkPasswordConfirm(onlyCheck) {
         const inputPassword = document.getElementById("register_password");
         const inputPasswordConfirm = document.getElementById("register_password_confirm");
         const password = inputPassword.value;
@@ -106,7 +106,7 @@ export default class Register {
         }
     }
     
-    static checkFirstName(onlyCheck) {
+    static async checkFirstName(onlyCheck) {
         const inputFirstName = document.getElementById("register_first_name");
         const value = inputFirstName.value;
         if (value === "") {
@@ -118,7 +118,7 @@ export default class Register {
         }
     }
     
-    static checkLastName(onlyCheck) {
+    static async checkLastName(onlyCheck) {
         const inputLastName = document.getElementById("register_last_name");
         const value = inputLastName.value;
         if (value === "") {
@@ -291,8 +291,8 @@ document.getElementById('switch_theme_button-light-theme').addEventListener('cli
 });
 
 document.getElementById('register_username').addEventListener('input', async () => {
-    Register.checkRegisterInputs();
-    Register.checkUsername();
+    await Register.checkRegisterInputs();
+    await Register.checkUsername();
 });
 
 document.getElementById('register_password').addEventListener('input', () => {
@@ -317,8 +317,8 @@ document.getElementById('register_last_name').addEventListener('input', () => {
 });
 
 document.getElementById('register_email').addEventListener('input', async () => {
-    Register.checkRegisterInputs();
-    Register.checkEmail();
+    await Register.checkRegisterInputs();
+    await Register.checkEmail();
 });
 
 // events for fields
