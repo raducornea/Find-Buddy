@@ -26,4 +26,3 @@ interface ProfileRepository : MongoRepository<UserProfile, String>{
            fields = "{ 'email' : 0, 'idmId' : 0, 'id' : 0 }")
     fun findUsersNotMyIDAndMatchingName(userID: Int, search: String): Optional<List<UserProfile>>
 }
-}

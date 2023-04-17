@@ -220,6 +220,485 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Algorithms",
+			"item": [
+				{
+					"name": "Get Encrypted Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8040/algorithms/encrypt/qwerty",
+							"host": [
+								"localhost"
+							],
+							"port": "8040",
+							"path": [
+								"algorithms",
+								"encrypt",
+								"qwerty"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IDM",
+			"item": [
+				{
+					"name": "NoOpPasswordEncoder",
+					"item": [
+						{
+							"name": "Secret Key + Username/Password",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "bill",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "key",
+										"value": "secret",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8001/demo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Just Username/Password",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "bill",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8001/demo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Just Secret Key",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "key",
+										"value": "secret",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8001/demo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should get 403",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "bill",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "key",
+										"value": "secret",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8001/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BCryptPasswordEncoder",
+					"item": [
+						{
+							"name": "Secret Key + Username/Password",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "bill",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "key",
+										"value": "secret",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8001/demo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Just Username/Password",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "bill",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8001/demo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Just Secret Key",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "key",
+										"value": "secret",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8001/demo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"demo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Should let user with Write Authority in",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "trevor",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "key",
+										"value": "secret",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8001/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Logout Tests",
+					"item": [
+						{
+							"name": "Just Username/Password",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "bill",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8001/demo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"demo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User Checks",
+					"item": [
+						{
+							"name": "GET User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8001/check-username/bill",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8001",
+									"path": [
+										"check-username",
+										"bill"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gateway",
+			"item": [
+				{
+					"name": "HomeController",
+					"item": [
+						{
+							"name": "Home",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/home",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"home"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/home",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"home"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profile Service",
+			"item": [
+				{
+					"name": "Test Producer Kafka",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FilterAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
