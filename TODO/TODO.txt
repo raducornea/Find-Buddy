@@ -1,13 +1,37 @@
+Urgent:
+- functia de cautare a altor utilizatori + listarea lor paginata (RESTful API)
+- mongo DB, de stocat preferintele, tara si locatia (selectabile)
+- chat intre 2 useri (doar)
+- add friend
+- block people
+- report users
+- limit users to add 3/5 users a day at maximum
+- other checks too for frontend register
+- should change register error and get user back to the initial form (maybe)
 
-
-2. Cum anume ar trebui sa stochez pozele utilizatorilor? Cum le voi identifica?    
-id specific si numele pozei sa caontine ceva de identificare sau poza criptata cu o cheie care sa fie si element de identificare, mai sunt si alte solutii
+Important:
+Q: Cum anume ar trebui sa stochez pozele utilizatorilor? Cum le voi identifica?    
+A: id specific si numele pozei sa caontine ceva de identificare sau poza criptata cu o cheie care sa fie si element de identificare, mai sunt si alte solutii
 Ma gandeam sa am un fisier cu toti utilizatorii (fisiere) - baza de date
 si sa am un folder acolo la randul lui numit profile picture si sa o pun acolo DA
+- pozele pe cloud...
+- de testat si de pe telefon?
+- subscribe to people/events and get notified when they post
 
+Nice to have:
+- autocomplete with TRIE algorithm
 
-
+Algoritmul (posibil strategy):
+- surprise me (random absolut)
+- 2 de altii
+- unul nou (AI ce ar putea primi recomandari in functie de evenimente)
 Algoritmi de recomandat prieteni?
 https://www.celential.ai/blog/best-ai-sourcing-tools/
 
 
+Later - prezentari:
+- scheme la tabele si baze de date
+- diagrame de servicii / uml
+- parti din proiect interesante (password encryption, security, algoritmul)
+- populat bazele de date
+- Raporturi
