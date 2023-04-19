@@ -67,4 +67,14 @@ class IDMController {
         response.sendRedirect("http://localhost:8001/register")
     }
 
+    @GetMapping("/funny")
+    fun funny(
+        response: HttpServletResponse,
+        @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") cookieJws: String,
+    ) {
+
+        val url = "http://localhost:8002/profile/hi"
+        val result = urlCaller.getTokenResponseBody(url, cookieJws).toString()
+        println(result)
+    }
 }

@@ -13,6 +13,7 @@ import kotlin.collections.HashMap
 
 @RestController
 @CrossOrigin
+@RequestMapping("/profile")
 class ProfilesController {
 
     @Autowired
@@ -47,6 +48,11 @@ class ProfilesController {
         response["available"] = isAvailable
 
         return ResponseEntity.ok(response)
+    }
+
+    @GetMapping("/hi")
+    fun hi(): String {
+        return "Hi"
     }
 	
     @GetMapping("/users")
