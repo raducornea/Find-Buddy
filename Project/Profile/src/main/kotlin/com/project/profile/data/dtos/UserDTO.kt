@@ -12,6 +12,7 @@ class UserDTO {
     private var firstName: String = ""
     private var lastName: String = ""
     private var email: String = ""
+    private var preferences: List<String> = listOf()
 
     fun getIdmId(): Int = idmId
     fun getUsername(): String = username
@@ -20,6 +21,7 @@ class UserDTO {
     fun getFirstName(): String = firstName
     fun getLastName(): String = lastName
     fun getEmail(): String = email
+    fun getPreferences(): List<String> = preferences
 
     fun setIdmId(idmId: Int) {
         this.idmId = idmId
@@ -42,5 +44,7 @@ class UserDTO {
     fun setEmail(email: String) {
         this.email = email
     }
-
+    fun setPreferences(preferences: List<String>) {
+        this.preferences = preferences
+    }
 }

@@ -3,6 +3,7 @@ package com.project.profile.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -24,10 +25,12 @@ class SecurityConfig : SecurityConfigurerAdapter<DefaultSecurityFilterChain, Htt
         return http
 
             .authorizeHttpRequests()
-                .requestMatchers("/profile/**").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
+//                .requestMatchers("/profile/**").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
+                .requestMatchers(HttpMethod.POST, "/profile/new-profile").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
                 .anyRequest().permitAll()
                 .and()
 
+            .csrf().disable()
             .cors().disable()
             .build()
     }

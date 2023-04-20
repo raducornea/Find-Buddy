@@ -1,4 +1,4 @@
-package com.project.profile.controllers
+package com.project.profile.presentation.controllers
 
 import com.project.profile.data.dtos.UserDTO
 import com.project.profile.data.entities.UserProfile
@@ -68,4 +68,13 @@ class ProfilesController {
 
         return ResponseEntity.ok().body("")
     }
+
+//    @GetMapping("/recommended-users")
+//    fun recommendedUsersBasedOnMyPreferences() {
+//        fun recommendUsers(user: User, users: List<User>): List<User> {
+//            return users
+//                .filter { it != user } // exclude current user
+//                .sortedByDescending { it.preferences.intersect(user.preferences).size } // sort by number of shared preferences
+//        }
+//    }
 }

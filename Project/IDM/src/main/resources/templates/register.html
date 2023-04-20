@@ -46,6 +46,10 @@
                 <div class="label_for_input">Email</div>
                 <input id="register_email" type="email" placeholder="e.g. example@gmail.com" th:field="*{email}"/>
                 <div class="label_for_hint_or_error">Required</div>
+                
+                <div class="label_for_input">Preferences</div>
+                <input id="register_preferences" type="text" placeholder="e.g. dancing, javascript" th:field="*{preferences}"/>
+                <div class="label_for_hint_or_error">Must be at least 1 and at most 10</div>
 
                 <input id="register_submit" type="submit" value="Register"/>
 

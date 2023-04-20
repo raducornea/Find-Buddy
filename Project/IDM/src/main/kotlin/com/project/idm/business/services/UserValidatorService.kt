@@ -29,10 +29,14 @@ class UserValidatorService  {
         val username = userDTO.getUsername()
         val password = userDTO.getPassword()
         val passwordConfirm = userDTO.getPasswordConfirm()
+        val preferences = userDTO.getPreferences()
+
+        println("Preferences size: ${preferences.size}")
 
         val validUsername = username.length in 2..20
         val validPassword = password == passwordConfirm && password.length > 2
-        val validFields = validUsername && validPassword
+        val validPreferences = preferences.size in 0..10
+        val validFields = validUsername && validPassword && validPreferences
 
         return validFields
     }
@@ -70,7 +74,7 @@ class UserValidatorService  {
         // 3. try posting the user profile in the Profile Service
         // we NEED to set the id, so we can find it easily through tables
         userDTO.setIdmId(userRepository.findUserByUsername(user.getUsername()).get().getId())
-        val requestUrl = "http://localhost:8002/new-profile"
+        val requestUrl = "http://localhost:8002/profile/new-profile"
         val response = sendRequest(requestUrl, userDTO)
         if (response == null || response.statusCode != HttpStatus.CREATED) {
             userRepository.delete(user)

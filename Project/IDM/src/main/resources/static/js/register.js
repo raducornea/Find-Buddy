@@ -13,7 +13,7 @@ export default class Register {
         // Return a Promise that resolves with a boolean value
         return new Promise((resolve, reject) => {
             Register.debounceTimer = setTimeout(() => {
-            fetch(`http://localhost:8002/check-email/${email}`)
+            fetch(`http://localhost:8002/profile/check-email/${email}`)
                 .then(response => response.json())
                 .then(data => {
                     resolve(data["available"]);

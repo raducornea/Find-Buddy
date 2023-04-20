@@ -14,6 +14,7 @@ class UserProfile {
     private var firstName: String = ""
     private var lastName: String = ""
     private var email: String = ""
+    private var preferences: List<String> = listOf()
 
     constructor() { }
     constructor(userDTO: UserDTO) {
@@ -22,6 +23,7 @@ class UserProfile {
         this.firstName = userDTO.getFirstName()
         this.lastName = userDTO.getLastName()
         this.email = userDTO.getEmail()
+        this.preferences = userDTO.getPreferences()
     }
 
     fun getId(): ObjectId = id
@@ -29,6 +31,8 @@ class UserProfile {
     fun getFirstName(): String = firstName
     fun getLastName(): String = lastName
     fun getEmail(): String = email
+    fun getPreferences(): List<String> = preferences
+
 
     fun setId(id: ObjectId){
         this.id = id
@@ -44,5 +48,8 @@ class UserProfile {
     }
     fun setEmail(email: String){
         this.email = email
+    }
+    fun setPreferences(preferences: List<String>) {
+        this.preferences = preferences
     }
 }
