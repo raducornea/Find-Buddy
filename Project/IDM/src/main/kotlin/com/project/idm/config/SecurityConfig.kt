@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager
 
 
 /**
@@ -26,9 +27,11 @@ class SecurityConfig : SecurityConfigurerAdapter<DefaultSecurityFilterChain, Htt
         return http
 
             .authorizeHttpRequests()
-                .requestMatchers("/verify-token", "/check-username/**").permitAll()
+                .requestMatchers("/invalidate-token").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
+                .requestMatchers("/verify-token").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
+
+                .requestMatchers("/check-username/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                .requestMatchers("/invalidate-token").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/**").hasAnyAuthority("read", "write")
                 .anyRequest().authenticated()

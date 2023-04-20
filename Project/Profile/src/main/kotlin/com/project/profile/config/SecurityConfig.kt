@@ -24,8 +24,7 @@ class SecurityConfig : SecurityConfigurerAdapter<DefaultSecurityFilterChain, Htt
         return http
 
             .authorizeHttpRequests()
-                .requestMatchers("/profile/**").access(
-                    WebExpressionAuthorizationManager("isAnonymous() and hasIpAddress('localhost')"))
+                .requestMatchers("/profile/**").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
                 .anyRequest().permitAll()
                 .and()
 
