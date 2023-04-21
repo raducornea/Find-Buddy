@@ -8,6 +8,7 @@
         <script type="module" th:src="@{/js/Theme.js}"></script>
         <script type="module" th:src="@{/js/all-pages.js}"></script>
         <script type="module" th:src="@{/js/register.js}"></script>
+        <script type="module" th:src="@{/js/preferences.js}"></script>
 
         <link rel="stylesheet" th:href="@{/css/all-pages.css}"/>
         <link rel="stylesheet" th:href="@{/css/register.css}"/>
@@ -48,8 +49,10 @@
                 <div class="label_for_hint_or_error">Required</div>
                 
                 <div class="label_for_input">Preferences</div>
-                <input id="register_preferences" type="text" placeholder="e.g. dancing, javascript" th:field="*{preferences}"/>
+                <input id="register_preferences" onkeydown="return (event.keyCode!=13);" type="text" placeholder="e.g. dancing, javascript"/>
                 <div class="label_for_hint_or_error">Must be at least 1 and at most 10</div>
+                <ul id="list"></ul>
+                <input id="hidden_preferences" type="hidden" th:field="*{preferences}"/>
 
                 <input id="register_submit" type="submit" value="Register"/>
 
