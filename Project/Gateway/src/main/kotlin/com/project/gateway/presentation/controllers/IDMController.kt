@@ -31,7 +31,6 @@ class IDMController {
             redirectView.url = "http://localhost:8000/"
             return redirectView
         }
-
     }
 
     @GetMapping("/logout")
@@ -65,16 +64,5 @@ class IDMController {
         val cookieAuthorization = Cookie("cookieAuthorizationToken", cookieJws)
         response.addCookie(cookieAuthorization)
         response.sendRedirect("http://localhost:8001/register")
-    }
-
-    @GetMapping("/funny")
-    fun funny(
-        response: HttpServletResponse,
-        @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") cookieJws: String,
-    ) {
-
-        val url = "http://localhost:8002/profile/hi"
-        val result = urlCaller.getTokenResponseBody(url, cookieJws).toString()
-        println(result)
     }
 }

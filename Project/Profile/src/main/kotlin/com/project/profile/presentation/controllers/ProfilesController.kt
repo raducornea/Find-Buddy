@@ -25,7 +25,8 @@ class ProfilesController {
         try {
             // first, check if user already exists, and if so, return error code
             val profile = profileRepository.findUserProfileByEmail(userDTO.getEmail())
-            if (profile.isPresent) // 409 Conflict
+            if (profile.isPresent)
+                // 409 Conflict
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("User with that email already exists")
 
             val newProfile = UserProfile(userDTO)
@@ -33,7 +34,8 @@ class ProfilesController {
 
             return ResponseEntity.status(HttpStatus.CREATED).body("Profile created successfully")
 
-        } catch (exception: Exception) { // 500 Internal Server Error
+        } catch (exception: Exception) {
+            // 500 Internal Server Error
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unexpected error occurred while creating a new profile")
         }
     }
@@ -50,31 +52,6 @@ class ProfilesController {
         return ResponseEntity.ok(response)
     }
 
-    @GetMapping("/hi")
-    fun hi(): String {
-        return "Hi"
-    }
-	
-    @GetMapping("/users")
-    fun filterAllUsers(
-        @RequestParam(name = "search", defaultValue = "", required = false) search: Optional<String>,
-    ): ResponseEntity<Any> {
-
-
-        if (search.isPresent && search.get() != "") {
-            val optionalUsers = profileRepository.findUsersNotMyIDAndMatchingName(21, search.get())
-            return ResponseEntity.ok().body(optionalUsers)
-        }
-
-        return ResponseEntity.ok().body("")
-    }
-
-//    @GetMapping("/recommended-users")
-//    fun recommendedUsersBasedOnMyPreferences() {
-//        fun recommendUsers(user: User, users: List<User>): List<User> {
-//            return users
-//                .filter { it != user } // exclude current user
-//                .sortedByDescending { it.preferences.intersect(user.preferences).size } // sort by number of shared preferences
-//        }
-//    }
+    //todo
+    // update, delete
 }

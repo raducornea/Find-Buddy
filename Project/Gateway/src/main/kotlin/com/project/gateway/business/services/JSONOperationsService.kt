@@ -40,4 +40,22 @@ class JSONOperationsService : IJSONOperationsService {
             return listOf()
         }
     }
+
+    override fun getIdFromJSONString(stringToTransform: String): Int {
+        // code might crash, so it's better to return something rather than letting it crash
+        try {
+            val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+            val jsonObject: JsonObject = gson.fromJson(stringToTransform, JsonObject::class.java)
+
+            val jsonElement: JsonElement = jsonObject.getAsJsonPrimitive("id")
+            val userId: Int = gson.fromJson(jsonElement, Int::class.java)
+
+            return userId
+
+        } catch (exception: Exception) {
+            return -1
+        }
+    }
+
+
 }
