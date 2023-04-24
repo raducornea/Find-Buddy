@@ -7,6 +7,9 @@ import java.util.*
 
 interface ProfileRepository : MongoRepository<UserProfile, String>{
 
+    @Query("{ 'idmId' : ?0 }")
+    fun findUserByIdmId(idmId: Int): Optional<UserProfile>
+
     @Query("{ 'email' : ?0 }")
     fun findUserProfileByEmail(email: String): Optional<UserProfile>
 

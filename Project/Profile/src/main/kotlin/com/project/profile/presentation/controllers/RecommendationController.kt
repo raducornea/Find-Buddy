@@ -26,7 +26,7 @@ class RecommendationController {
             return ResponseEntity.ok().body(optionalUsers)
         }
 
-        if (userId < 0) return ResponseEntity("User cannot have id -1!",HttpStatus.FORBIDDEN)
+        if (userId < 0) return ResponseEntity("User cannot have id -1!", HttpStatus.FORBIDDEN)
 
         val allUsersExceptCurrentOne = profileRepository.findAllUsersNotMyId(userId)
         return ResponseEntity.ok().body(allUsersExceptCurrentOne)
