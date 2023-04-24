@@ -1,5 +1,7 @@
 package com.project.profile.presentation.controllers
 
+import com.project.profile.business.interfaces.ISortingStrategy
+import com.project.profile.business.services.SortByMostPreferences
 import com.project.profile.persistence.repositories.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -15,6 +17,14 @@ class RecommendationController {
     @Autowired
     private lateinit var profileRepository: ProfileRepository
 
+    @Autowired
+    private lateinit var sortingStrategy: ISortingStrategy
+
+    private fun changeStrategy(strategy: String) {
+        if (strategy == "MostPreferences") sortingStrategy = SortByMostPreferences()
+//        if (strategy == "LeastPreferences") sortingStrategy = SortByMostPreferences()
+    }
+
     @GetMapping("/users/{userId}")
     fun all(
         @PathVariable userId: Int,
@@ -28,16 +38,14 @@ class RecommendationController {
 
         if (userId < 0) return ResponseEntity("User cannot have id -1!", HttpStatus.FORBIDDEN)
 
+        val currentUser = profileRepository.findUserByIdmId(userId)
         val allUsersExceptCurrentOne = profileRepository.findAllUsersNotMyId(userId)
-        return ResponseEntity.ok().body(allUsersExceptCurrentOne)
-    }
 
-//    @GetMapping("/recommended-users")
-//    fun recommendedUsersBasedOnMyPreferences() {
-//        fun recommendUsers(user: User, users: List<User>): List<User> {
-//            return users
-//                .filter { it != user } // exclude current user
-//                .sortedByDescending { it.preferences.intersect(user.preferences).size } // sort by number of shared preferences
-//        }
-//    }
+        // make strategy field here in request
+        val strategy = "MostPreferences"
+        changeStrategy(strategy)
+
+        val sortedUsers = sortingStrategy.sort(currentUser.get(), allUsersExceptCurrentOne.get())
+        return ResponseEntity.ok().body(sortedUsers)
+    }
 }
