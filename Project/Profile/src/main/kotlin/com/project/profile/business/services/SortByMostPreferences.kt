@@ -4,7 +4,6 @@ import com.project.profile.business.interfaces.ISortingStrategy
 import com.project.profile.data.entities.UserProfile
 import org.springframework.stereotype.Service
 
-@Service
 class SortByMostPreferences : ISortingStrategy {
 
     override fun sort(currentUser: UserProfile, users: List<UserProfile>): List<UserProfile> {

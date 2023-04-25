@@ -1,6 +1,7 @@
 package com.project.profile.presentation.controllers
 
 import com.project.profile.business.interfaces.ISortingStrategy
+import com.project.profile.business.services.SortByKNN
 import com.project.profile.business.services.SortByMostPreferences
 import com.project.profile.persistence.repositories.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,18 +18,18 @@ class RecommendationController {
     @Autowired
     private lateinit var profileRepository: ProfileRepository
 
-    @Autowired
     private lateinit var sortingStrategy: ISortingStrategy
 
     private fun changeStrategy(strategy: String) {
-        if (strategy == "MostPreferences") sortingStrategy = SortByMostPreferences()
-//        if (strategy == "LeastPreferences") sortingStrategy = SortByMostPreferences()
+        if (strategy == "most-preferences") sortingStrategy = SortByMostPreferences()
+        else if (strategy == "knn") sortingStrategy = SortByKNN()
     }
 
     @GetMapping("/users/{userId}")
     fun all(
         @PathVariable userId: Int,
         @RequestParam(name = "search", defaultValue = "", required = false) search: Optional<String>,
+        @RequestParam(name = "strategy", defaultValue = "most-preferences", required = false) strategy: String,
     ): ResponseEntity<Any> {
 
         if (search.isPresent && search.get() != "") {
@@ -42,7 +43,7 @@ class RecommendationController {
         val allUsersExceptCurrentOne = profileRepository.findAllUsersNotMyId(userId)
 
         // make strategy field here in request
-        val strategy = "MostPreferences"
+        println(strategy)
         changeStrategy(strategy)
 
         val sortedUsers = sortingStrategy.sort(currentUser.get(), allUsersExceptCurrentOne.get())

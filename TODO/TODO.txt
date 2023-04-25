@@ -50,7 +50,6 @@ Pot scrie direct pentru sesiunea respectiva (incat sa extrag cv pentru referatul
 
 - e 1/4 din lucrarea pentru licenta... damn, asta e util
 
-- 1/6 din mijloc la SCSS
 - cam ce tema tratez, solutii, bleeeeh...
 - cuvinte cheie de extras. ok
 
@@ -74,12 +73,9 @@ Prerecuzita:
 - intre 8 si 12 multicel de lucru... oofies...
 
 
-Cat de cat functionala? Ce inseamna asta?
-- trb sa functioneze cel mai functional...
-- trebuie cu recomandarile sa functioneze... CAT DE CAT...
-- pana pe 25-26 aprilie - sa arat ca functioneaza ceva pe partea asta...
-
 - e suficient doar sa prezint PPT-ul, in care zic despre ce am facut, si ce e verificabil - nu prea e ok cu ce voi face...
+
+
 
 
 

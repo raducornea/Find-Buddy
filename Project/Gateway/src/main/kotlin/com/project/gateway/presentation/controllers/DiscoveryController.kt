@@ -30,6 +30,7 @@ class DiscoveryController {
         @RequestHeader(value = "Authorization", required = false, defaultValue = "") bearerJws: String,
         @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") cookieJws: String,
 //        @RequestParam(name = "search", defaultValue = "", required = false) search: Optional<String>,
+        @RequestParam(name = "strategy", defaultValue = "most-preferences", required = false) strategy: String,
     ): ResponseEntity<String> {
 
         val allowedAuthorities = listOf("read")
@@ -42,7 +43,7 @@ class DiscoveryController {
         if (userId == -1) return ResponseEntity("User cannot have id -1!", HttpStatus.FORBIDDEN)
 
         // proceed to call the other service request and attach the userId to request
-        val url = "http://localhost:8002/discovery/users/${userId}"
+        val url = "http://localhost:8002/discovery/users/${userId}?strategy=${strategy}"
         val result = urlCaller.getTokenResponseBody(url, cookieJws).toString()
 
         println(result)
