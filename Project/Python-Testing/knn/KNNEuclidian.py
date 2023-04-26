@@ -4,14 +4,14 @@ from sklearn.neighbors import NearestNeighbors
 from knn.KNNStrategy import KNNStrategy
 
 
-class KNNCosine(KNNStrategy):
+class KNNEuclidian(KNNStrategy):
 
     def __init__(self, target_preferences, users_preferences):
         super().__init__(target_preferences, users_preferences)
 
     def metric(self, u, v):
-        cos_sim = np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
-        return 1 - cos_sim
+        dist = np.linalg.norm(u - v)
+        return dist
 
     def solve(self, k):
         target_user_binary, users_binary = self.get_binary_vectors()

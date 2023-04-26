@@ -2,8 +2,8 @@ import json
 import numpy as np
 from flask import Flask, request
 
-from knn.KNNStrategy import KNNStrategy
 from knn.KNNCosine import KNNCosine
+from knn.KNNEuclidian import KNNEuclidian
 from knn.KNNJaccard import KNNJaccard
 
 app = Flask(__name__)
@@ -12,6 +12,7 @@ app = Flask(__name__)
 def cosine_similarity(u, v):
     cos_sim = np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
     return cos_sim
+
 
 def jaccard_similarity(u, v):
     intersection = len(set(u).intersection(set(v)))
@@ -48,6 +49,7 @@ def cosine_similarity_algorithm(target_user, users):
 
     return np.array(cosine_similarities_indices)
 
+# ignore the above lines - todo use for other algorithms
 
 def get_preferences_from_request(request):
     body = str(request.data.decode())
@@ -63,10 +65,12 @@ def get_preferences_from_request(request):
 def knn_route(strategy):
     target_preferences, users_preferences = get_preferences_from_request(request)
 
-    if strategy == "cosine-similarity":
+    if strategy == "cosine":
         knn = KNNCosine(target_preferences, users_preferences)
     elif strategy == "jaccard":
         knn = KNNJaccard(target_preferences, users_preferences)
+    elif strategy == "euclidian":
+        knn = KNNEuclidian(target_preferences, users_preferences)
     else:
         knn = KNNJaccard(target_preferences, users_preferences)
 

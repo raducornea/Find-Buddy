@@ -3,6 +3,7 @@ package com.project.profile.presentation.controllers
 import com.project.profile.business.interfaces.ISortingStrategy
 import com.project.profile.business.strategies.sorting.SortByKNNJaccard
 import com.project.profile.business.strategies.sorting.SortByKNNCosine
+import com.project.profile.business.strategies.sorting.SortByKNNEuclidian
 import com.project.profile.business.strategies.sorting.SortByMostPreferences
 import com.project.profile.persistence.repositories.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,8 +24,9 @@ class RecommendationController {
 
     private fun changeStrategy(strategy: String) {
         sortingStrategy = when (strategy) {
-            "knn-cosine-similarity" -> SortByKNNCosine()
+            "knn-cosine" -> SortByKNNCosine()
             "knn-jaccard" -> SortByKNNJaccard()
+            "knn-euclidian" -> SortByKNNEuclidian()
             else -> SortByMostPreferences()
         }
     }

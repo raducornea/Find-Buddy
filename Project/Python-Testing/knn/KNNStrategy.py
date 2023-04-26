@@ -10,6 +10,10 @@ class KNNStrategy(ABC):
         self.users_preferences = users_preferences
 
     @abstractmethod
+    def metric(self, u, v):
+        pass
+
+    @abstractmethod
     def solve(self, k):
         pass
 

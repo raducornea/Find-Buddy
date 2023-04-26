@@ -9,9 +9,8 @@ class KNNJaccard(KNNStrategy):
 
     def __init__(self, target_preferences, users_preferences):
         super().__init__(target_preferences, users_preferences)
-        self.metric_strategy = self.jaccard_distance
 
-    def jaccard_distance(self, u, v):
+    def metric(self, u, v):
         # convert the binary list into sets to operate easier on those numbers
         u = set(np.where(u == 1)[0])  # {2, 5, 6}
         v = set(np.where(v == 1)[0])  # {5}
@@ -22,13 +21,10 @@ class KNNJaccard(KNNStrategy):
         return jaccard_dist
 
     def solve(self, k):
-        if k > len(self.users_preferences): k = len(self.users_preferences)
-
-        # binary vectors
         target_user_binary, users_binary = self.get_binary_vectors()
 
         # Fit BallTree model
-        tree = BallTree(users_binary, metric=self.metric_strategy)
+        tree = BallTree(users_binary, metric=self.metric)
 
         # Find closest users to target_user
         distances, indices = tree.query([target_user_binary], k=k)
