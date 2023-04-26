@@ -8,11 +8,7 @@ class SortByMostPreferences : ISortingStrategy {
 
     override fun sort(currentUser: UserProfile, users: List<UserProfile>): List<UserProfile> {
         return users
-            // exclude current user
-            .filter { it.getId() != currentUser.getId() }
-
-            // sort by number of shared preferences
-            .sortedByDescending { it.getPreferences().intersect(currentUser.getPreferences().toSet()).size }
+            .filter { it.getId() != currentUser.getId() } // exclude current user
+            .sortedByDescending { it.getPreferences().intersect(currentUser.getPreferences().toSet()).size } // sort by number of shared preferences
     }
-
 }

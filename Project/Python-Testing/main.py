@@ -40,14 +40,6 @@ def cosine_similarity_algorithm(target_user, users):
     return np.array(cosine_similarities_indices)
 
 
-def jaccard_similarity(u, v):
-    u = set(u)
-    v = set(v)
-    intersection = len(u & v)
-    union = len(u | v)
-    return intersection / union
-
-
 def knn_algorithm(target_user, users, k=100):
     all_users = users + [target_user]
 
