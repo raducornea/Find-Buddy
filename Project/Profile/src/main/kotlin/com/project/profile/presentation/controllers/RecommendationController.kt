@@ -1,6 +1,7 @@
 package com.project.profile.presentation.controllers
 
 import com.project.profile.business.interfaces.ISortingStrategy
+import com.project.profile.business.services.SortByCosineSimilarity
 import com.project.profile.business.services.SortByKNN
 import com.project.profile.business.services.SortByMostPreferences
 import com.project.profile.persistence.repositories.ProfileRepository
@@ -21,8 +22,11 @@ class RecommendationController {
     private lateinit var sortingStrategy: ISortingStrategy
 
     private fun changeStrategy(strategy: String) {
-        if (strategy == "most-preferences") sortingStrategy = SortByMostPreferences()
-        else if (strategy == "knn") sortingStrategy = SortByKNN()
+        sortingStrategy = when (strategy) {
+            "knn" -> SortByKNN()
+            "cosine-similarity" -> SortByCosineSimilarity()
+            else -> SortByMostPreferences()
+        }
     }
 
     @GetMapping("/users/{userId}")
