@@ -1,7 +1,10 @@
 import json
 import numpy as np
-from sklearn.neighbors import NearestNeighbors
 from flask import Flask, request
+
+from knn.KNNStrategy import KNNStrategy
+from knn.KNNCosine import KNNCosine
+from knn.KNNJaccard import KNNJaccard
 
 app = Flask(__name__)
 
@@ -9,6 +12,12 @@ app = Flask(__name__)
 def cosine_similarity(u, v):
     cos_sim = np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
     return cos_sim
+
+def jaccard_similarity(u, v):
+    intersection = len(set(u).intersection(set(v)))
+    union = len(set(u).union(set(v)))
+    jaccard_sim = intersection / union
+    return jaccard_sim
 
 
 def cosine_similarity_algorithm(target_user, users):
@@ -40,63 +49,31 @@ def cosine_similarity_algorithm(target_user, users):
     return np.array(cosine_similarities_indices)
 
 
-def knn_algorithm(target_user, users, k=100):
-    all_users = users + [target_user]
-
-    if k > len(users): k = len(users)
-
-    # binary vectors
-    features_count = max(max(user) for user in all_users)
-    users_binary = []
-    for user in users:
-        user_binary = np.zeros(features_count + 1)
-        for preference in user:
-            user_binary[preference] = 1
-        users_binary.append(user_binary)
-
-    target_user_binary = np.zeros(features_count + 1)
-    for preference in target_user:
-        target_user_binary[preference] = 1
-
-    # Fit KNN model
-    knn = NearestNeighbors(n_neighbors=k, metric='jaccard')
-    knn.fit(users_binary)
-
-    # Find closest users to target_user
-    distances, indices = knn.kneighbors([target_user_binary])
-    closest_users_indices = indices[0]
-
-    # print(closest_users_indices)
-    return closest_users_indices
-
-
-@app.route("/algorithms/knn", methods=["POST"])
-def knn_route():
+def get_preferences_from_request(request):
     body = str(request.data.decode())
     data = json.loads(body)
 
     target_preferences = data["target_preferences"]
     users_preferences = data["users_preferences"]
 
-    # return users_preferences + [target_preferences]
-    result = knn_algorithm(target_preferences, users_preferences, k=3)
-    return str(result)
+    return target_preferences, users_preferences
 
 
-@app.route("/algorithms/cosine-similarity", methods=["POST"])
-def cosine_similarity_route():
-    body = str(request.data.decode())
-    data = json.loads(body)
+@app.route("/algorithms/knn/<strategy>", methods=["POST"])
+def knn_route(strategy):
+    target_preferences, users_preferences = get_preferences_from_request(request)
 
-    target_preferences = data["target_preferences"]
-    users_preferences = data["users_preferences"]
+    if strategy == "cosine-similarity":
+        knn = KNNCosine(target_preferences, users_preferences)
+    elif strategy == "jaccard":
+        knn = KNNJaccard(target_preferences, users_preferences)
+    else:
+        knn = KNNJaccard(target_preferences, users_preferences)
 
-    # return users_preferences + [target_preferences]
-    result = cosine_similarity_algorithm(target_preferences, users_preferences)
+    result = knn.solve(k=len(users_preferences))
     return str(result)
 
 
 if __name__ == "__main__":
     app.debug = True
     app.run(host="localhost", port=5000)
-

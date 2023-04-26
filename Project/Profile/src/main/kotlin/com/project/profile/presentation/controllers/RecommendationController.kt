@@ -1,9 +1,9 @@
 package com.project.profile.presentation.controllers
 
 import com.project.profile.business.interfaces.ISortingStrategy
-import com.project.profile.business.services.SortByCosineSimilarity
-import com.project.profile.business.services.SortByKNN
-import com.project.profile.business.services.SortByMostPreferences
+import com.project.profile.business.strategies.sorting.SortByKNNJaccard
+import com.project.profile.business.strategies.sorting.SortByKNNCosine
+import com.project.profile.business.strategies.sorting.SortByMostPreferences
 import com.project.profile.persistence.repositories.ProfileRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -23,8 +23,8 @@ class RecommendationController {
 
     private fun changeStrategy(strategy: String) {
         sortingStrategy = when (strategy) {
-            "knn" -> SortByKNN()
-            "cosine-similarity" -> SortByCosineSimilarity()
+            "knn-cosine-similarity" -> SortByKNNCosine()
+            "knn-jaccard" -> SortByKNNJaccard()
             else -> SortByMostPreferences()
         }
     }

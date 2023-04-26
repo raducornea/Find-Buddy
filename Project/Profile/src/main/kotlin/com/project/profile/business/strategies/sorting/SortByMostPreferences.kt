@@ -1,8 +1,7 @@
-package com.project.profile.business.services
+package com.project.profile.business.strategies.sorting
 
 import com.project.profile.business.interfaces.ISortingStrategy
 import com.project.profile.data.entities.UserProfile
-import org.springframework.stereotype.Service
 
 class SortByMostPreferences : ISortingStrategy {
 
