@@ -49,6 +49,7 @@ def cosine_similarity_algorithm(target_user, users):
 
     return np.array(cosine_similarities_indices)
 
+
 # ignore the above lines - todo use for other algorithms
 
 def get_preferences_from_request(request):

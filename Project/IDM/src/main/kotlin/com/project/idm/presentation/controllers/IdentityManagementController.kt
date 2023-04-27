@@ -8,6 +8,8 @@ import jakarta.servlet.http.Cookie
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler
@@ -58,11 +60,21 @@ class IdentityManagementController {
         }
     }
 
+    // todo ma preferences in lower case and make sure no commas are included and the limits are respected
     @PostMapping("/register")
     fun register(@ModelAttribute userModel: UserDTO): ModelAndView {
         if (!userValidatorService.isUserRegisterValid(userModel))
             return ModelAndView("register-fail")
         return ModelAndView("register-success")
+    }
+
+    @PostMapping("/register-temporary")
+    fun registerTemporary(@RequestBody userModel: UserDTO): ResponseEntity<String> {
+
+        if (!userValidatorService.isUserRegisterValid(userModel))
+            return ResponseEntity.status(HttpStatus.CREATED).body("Profile created successfully")
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Profile not created")
     }
 
     // known bug: after logging out, even if logged out already, and going in login, you have to press twice to login
