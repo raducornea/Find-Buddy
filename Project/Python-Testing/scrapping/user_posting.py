@@ -5,6 +5,21 @@ import requests
 import pandas as pd
 
 
+"""
+add this only in filter chain:
+.authorizeHttpRequests().requestMatchers("/**").permitAll().and().csrf().disable().build()
+
+and make sure to include that route if you want to post again the users. also disable security when doing so:
+    @PostMapping("/register-temporary")
+    fun registerTemporary(@RequestBody userModel: UserDTO): ResponseEntity<String> {
+
+        if (!userValidatorService.isUserRegisterValid(userModel))
+            return ResponseEntity.status(HttpStatus.CREATED).body("Profile created successfully")
+        else
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Profile not created")
+    }
+"""
+
 def post_user(user_data):
     url = "http://localhost:8001/register-temporary"
 

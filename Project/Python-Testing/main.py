@@ -56,26 +56,31 @@ def get_preferences_from_request(request):
     body = str(request.data.decode())
     data = json.loads(body)
 
-    target_preferences = data["target_preferences"]
     users_preferences = data["users_preferences"]
+    target_preferences = data["target_preferences"]
 
-    return target_preferences, users_preferences
+    return users_preferences, target_preferences
 
 
 @app.route("/algorithms/knn/<strategy>", methods=["POST"])
 def knn_route(strategy):
-    target_preferences, users_preferences = get_preferences_from_request(request)
+    users_preferences, target_preferences = get_preferences_from_request(request)
 
     if strategy == "cosine":
-        knn = KNNCosine(target_preferences, users_preferences)
+        knn = KNNCosine(users_preferences, [target_preferences])
     elif strategy == "jaccard":
-        knn = KNNJaccard(target_preferences, users_preferences)
+        knn = KNNJaccard(users_preferences, [target_preferences])
     elif strategy == "euclidian":
-        knn = KNNEuclidian(target_preferences, users_preferences)
+        knn = KNNEuclidian(users_preferences, [target_preferences])
     else:
-        knn = KNNJaccard(target_preferences, users_preferences)
+        knn = KNNJaccard(users_preferences, [target_preferences])
 
-    result = knn.solve(k=len(users_preferences))
+    k = len(users_preferences)
+    knn.train(k)
+    result = knn.fit_indices(target_preferences)
+
+    # change result so it returns a list of number with 1 space instead
+    result = str(list(result)).replace(", ", " ")
     return str(result)
 
 

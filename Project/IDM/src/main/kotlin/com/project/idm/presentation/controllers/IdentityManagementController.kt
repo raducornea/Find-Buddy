@@ -60,21 +60,12 @@ class IdentityManagementController {
         }
     }
 
-    // todo ma preferences in lower case and make sure no commas are included and the limits are respected
+    // todo make preferences in lower case and make sure no commas are included and the limits are respected
     @PostMapping("/register")
     fun register(@ModelAttribute userModel: UserDTO): ModelAndView {
         if (!userValidatorService.isUserRegisterValid(userModel))
             return ModelAndView("register-fail")
         return ModelAndView("register-success")
-    }
-
-    @PostMapping("/register-temporary")
-    fun registerTemporary(@RequestBody userModel: UserDTO): ResponseEntity<String> {
-
-        if (!userValidatorService.isUserRegisterValid(userModel))
-            return ResponseEntity.status(HttpStatus.CREATED).body("Profile created successfully")
-        else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Profile not created")
     }
 
     // known bug: after logging out, even if logged out already, and going in login, you have to press twice to login

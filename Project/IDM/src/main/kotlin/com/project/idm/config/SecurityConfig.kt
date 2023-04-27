@@ -25,33 +25,32 @@ class SecurityConfig : SecurityConfigurerAdapter<DefaultSecurityFilterChain, Htt
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
 
         return http
-            .authorizeHttpRequests().requestMatchers("/**").permitAll().and().csrf().disable().build()
 
-//            .authorizeHttpRequests()
-//                .requestMatchers("/invalidate-token").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
-//                .requestMatchers("/verify-token").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
-//
-//                .requestMatchers("/register-temporary").permitAll()
-//                .requestMatchers("/check-username/**").permitAll()
-//                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-//                .requestMatchers("/register").permitAll()
-//                .requestMatchers("/**").hasAnyAuthority("read", "write")
-//                .anyRequest().authenticated()
-//                .and()
-//
-//            .formLogin()
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/")
-//                .permitAll()
-//                .and()
-//
-//            .logout()
-//                .logoutSuccessUrl("/login")
-//                .permitAll()
-//                .and()
-//
+            .authorizeHttpRequests()
+                .requestMatchers("/invalidate-token").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
+                .requestMatchers("/verify-token").access(WebExpressionAuthorizationManager("hasIpAddress('localhost')"))
+
+                .requestMatchers("/register-temporary").permitAll()
+                .requestMatchers("/check-username/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                .requestMatchers("/register").permitAll()
+                .requestMatchers("/**").hasAnyAuthority("read", "write")
+                .anyRequest().authenticated()
+                .and()
+
+            .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
+                .and()
+
+            .logout()
+                .logoutSuccessUrl("/login")
+                .permitAll()
+                .and()
+
 //            .cors().disable()
-//            .build()
+            .build()
     }
 
     @Bean

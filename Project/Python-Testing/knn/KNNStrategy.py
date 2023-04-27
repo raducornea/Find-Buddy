@@ -1,35 +1,34 @@
 from abc import ABC, abstractmethod
-
 import numpy as np
 
 
 class KNNStrategy(ABC):
-
-    def __init__(self, target_preferences, users_preferences):
-        self.target_preferences = target_preferences
-        self.users_preferences = users_preferences
 
     @abstractmethod
     def metric(self, u, v):
         pass
 
     @abstractmethod
-    def solve(self, k):
+    def fit_distances(self, target_user):
         pass
 
-    def get_binary_vectors(self):
-        all_users = self.users_preferences + [self.target_preferences]
+    @abstractmethod
+    def fit_indices(self, target_user):
+        pass
 
-        features_count = max(max(user) for user in all_users) + 1
-        users_binary = []
-        for user in self.users_preferences:
-            user_binary = np.zeros(features_count)
-            for preference in user:
-                user_binary[preference] = 1
-            users_binary.append(user_binary)
+    def get_features_count(self, training_users, fitting_users):
+        all_users = training_users + fitting_users
+        return max(max(user) for user in all_users) + 1
 
-        target_user_binary = np.zeros(features_count)
-        for preference in self.target_preferences:
-            target_user_binary[preference] = 1
+    def binarize_vectors(self, users, preferences_count):
+        training_users_binary = []
+        for user in users:
+            user_binary = self.binarize_vector(user, preferences_count)
+            training_users_binary.append(user_binary)
+        return training_users_binary
 
-        return target_user_binary, users_binary
+    def binarize_vector(self, user, preferences_count):
+        user_binary = np.zeros(preferences_count)
+        for preference in user:
+            user_binary[preference] = 1
+        return user_binary
