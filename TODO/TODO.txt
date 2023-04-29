@@ -46,21 +46,14 @@ Referataul 2 = Referatul 1 + alte modificari
 
 
 ###########################
-Pot scrie direct pentru sesiunea respectiva (incat sa extrag cv pentru referatul 2 - SCSS e mai mare un pict)
 
-- e 1/4 din lucrarea pentru licenta... damn, asta e util
-
-- cam ce tema tratez, solutii, bleeeeh...
-- cuvinte cheie de extras. ok
-
-I. Cam ce fac pt lucrarea de licenta, despre tema, necesitate, tematici apropiate, tehnologii utilizate, studii sau aplicatii asemanatoare si prin ci difera de celelalte aplicatii
+I. tematici apropiate, studii sau aplicatii asemanatoare si prin ci difera de celelalte aplicatii
 II. Modul in care am creat aplicatia + interfata
 III. Modul de implementare si rezultate
 
 la final exista un capitol de concluzii
 exista si un loc pentru referinte
 
-ESTE IN ROMANA!!!!!!!!!!!!
 
 - conteaza si cum prezint lucrarea, etc...
 
@@ -68,10 +61,8 @@ Prerecuzita:
 - pana pe 28 aprilie trebuie sa ma inscriu
   - macar cu 2 zile inainte, cod functional aproape gata... of...
 - la SCSS trebuie in formatul acela, cu dimensiunea aceea...
-- de citit template-ul ala, cum trb scrise tabelele, explicatiile imaginile...
 - prezentare ppt in fata comisiei vom prezenta asta (intre 2 si 8 asta...)
 - intre 8 si 12 multicel de lucru... oofies...
-
 
 - e suficient doar sa prezint PPT-ul, in care zic despre ce am facut, si ce e verificabil - nu prea e ok cu ce voi face...
 
