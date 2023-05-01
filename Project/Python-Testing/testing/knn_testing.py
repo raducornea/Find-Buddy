@@ -1,4 +1,5 @@
 import random
+import copy
 
 from knn.KNNCosine import KNNCosine
 from knn.KNNEuclidian import KNNEuclidian
@@ -78,7 +79,7 @@ class Table(object):
         self.similarities = similarities
 
     def __accumulate_similarities(self):
-        final_similarity = self.similarities[0]
+        final_similarity = copy.deepcopy(self.similarities[0])
         for index in range(1, len(self.similarities)):
             final_similarity.very_low += self.similarities[index].very_low
             final_similarity.low += self.similarities[index].low
@@ -99,6 +100,14 @@ class Table(object):
         final_similarity = self.__accumulate_similarities()
 
         print(final_similarity.k)
+        final_similarity.print_statistics()
+
+    def print_table_with_name_and_k(self):
+        print("*"*100)
+        final_similarity = self.__accumulate_similarities()
+
+        print(final_similarity.k)
+        print(final_similarity.name)
         final_similarity.print_statistics()
 
     def print_similarities(self):
@@ -138,6 +147,37 @@ def get_matching_users_metrics_profiles(fitting_user, k):
     return metrics_and_profiles
 
 
+def print_tables_with_k(similarities):
+    table_k_3 = Table(list(filter(lambda x: x.k == 3, similarities)))
+    table_k_5 = Table(list(filter(lambda x: x.k == 5, similarities)))
+    table_k_7 = Table(list(filter(lambda x: x.k == 7, similarities)))
+    table_k_11 = Table(list(filter(lambda x: x.k == 11, similarities)))
+    table_k_len = Table(list(filter(lambda x: x.k == training_count, similarities)))
+
+    table_k_3.print_table_with_k()
+    table_k_5.print_table_with_k()
+    table_k_7.print_table_with_k()
+    table_k_11.print_table_with_k()
+    table_k_len.print_table_with_k()
+
+
+def print_tables_with_name(similarities):
+    table_cosine = Table(list(filter(lambda x: x.name == "cosine", similarities)))
+    table_euclidian = Table(list(filter(lambda x: x.name == "euclidian", similarities)))
+    table_jaccard = Table(list(filter(lambda x: x.name == "jaccard", similarities)))
+
+    table_cosine.print_table_with_name()
+    table_euclidian.print_table_with_name()
+    table_jaccard.print_table_with_name()
+
+
+def print_tables_with_name_and_k(similarities):
+    for k in [3, 5, 7, 11, 110]:
+        for metric in ["cosine", "euclidian", "jaccard"]:
+            table = Table(list(filter(lambda x: x.k == k and x.name == metric, similarities)))
+            table.print_table_with_name_and_k()
+
+
 if __name__ == "__main__":
     tests_count = 1
     similarities = get_similarities_by_running_tests(tests_count)
@@ -146,38 +186,23 @@ if __name__ == "__main__":
     table_totals = Table(similarities)
     # table_totals.print_similarities()
 
-    table_cosine = Table(list(filter(lambda x: x.name == "cosine", similarities)))
-    table_euclidian = Table(list(filter(lambda x: x.name == "euclidian", similarities)))
-    table_jaccard = Table(list(filter(lambda x: x.name == "jaccard", similarities)))
-    # table_cosine.print_table_with_name()
-    # table_euclidian.print_table_with_name()
-    # table_jaccard.print_table_with_name()
+    # print_tables_with_name(similarities)
+    # print_tables_with_k(similarities)
+    # print_tables_with_name_and_k(similarities)
 
-    table_k_3 = Table(list(filter(lambda x: x.k == 3, similarities)))
-    table_k_5 = Table(list(filter(lambda x: x.k == 5, similarities)))
-    table_k_7 = Table(list(filter(lambda x: x.k == 7, similarities)))
-    table_k_11 = Table(list(filter(lambda x: x.k == 11, similarities)))
-    table_k_len = Table(list(filter(lambda x: x.k == training_count, similarities)))
-    # table_k_3.print_table_with_k()
-    # table_k_5.print_table_with_k()
-    # table_k_7.print_table_with_k()
-    # table_k_11.print_table_with_k()
-    # table_k_len.print_table_with_k()
 
     # 3 indivizi noi cu ceilalti cei mai potriviti cu 3 metode si de afisat preferintele celorlalti (k=3/5):
-    new_individ1 = [5, 19, 32]
-    new_individ2 = [16]
-    new_individ3 = [141, 5, 19, 55, 13]
-    new_users = [new_individ1, new_individ2, new_individ3]
-
-    for user in new_users:
-        metrics_and_profiles = get_matching_users_metrics_profiles(user, k=5)
-
-        print("*"*100)
-        print(f"Target preferences: {user}")
-        for metric_profile in metrics_and_profiles:
-            print(f"{metric_profile[0]}: \t{metric_profile[1]}")
+    # new_individ1 = [5, 19, 32]
+    # new_individ2 = [16]
+    # new_individ3 = [141, 5, 19, 55, 13]
+    # new_users = [new_individ1, new_individ2, new_individ3]
+    #
+    # for user in new_users:
+    #     metrics_and_profiles = get_matching_users_metrics_profiles(user, k=5)
+    #
+    #     print("*"*100)
+    #     print(f"Target preferences: {user}")
+    #     for metric_profile in metrics_and_profiles:
+    #         print(f"{metric_profile[0]}: \t{metric_profile[1]}")
 
     # de trimis codul dupa modifciari
-
-    # k | metoda | very high primul (...) | total -> excel

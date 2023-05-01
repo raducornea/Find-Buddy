@@ -47,7 +47,6 @@ Referataul 2 = Referatul 1 + alte modificari
 
 ###########################
 
-I. tematici apropiate, studii sau aplicatii asemanatoare si prin ci difera de celelalte aplicatii
 II. Modul in care am creat aplicatia + interfata
 III. Modul de implementare si rezultate
 
@@ -55,19 +54,11 @@ la final exista un capitol de concluzii
 exista si un loc pentru referinte
 
 
-- conteaza si cum prezint lucrarea, etc...
-
 Prerecuzita:
-- pana pe 28 aprilie trebuie sa ma inscriu
-  - macar cu 2 zile inainte, cod functional aproape gata... of...
-- la SCSS trebuie in formatul acela, cu dimensiunea aceea...
 - prezentare ppt in fata comisiei vom prezenta asta (intre 2 si 8 asta...)
 - intre 8 si 12 multicel de lucru... oofies...
 
-- e suficient doar sa prezint PPT-ul, in care zic despre ce am facut, si ce e verificabil - nu prea e ok cu ce voi face...
-
-
-
+- e suficient doar sa prezint PPT-ul, in care zic despre ce am facut, si ce e verificabil
 
 
 
@@ -94,13 +85,3 @@ concluzii si bibliografii
 - nu trb exagerat cu imagini... pot pune imagini, dar putin, sa nu umplu cu imagini
 
 Cumva in paralel - Cod + Licenta
-25 - 26 aprilie...
-
-
-- abstractul de scris... wut...
-
-
-
-
-
-
