@@ -38,21 +38,7 @@ Later - prezentari:
 
 
 
-
-
-
-Referataul 2 = Referatul 1 + alte modificari
-- exact cam ce e pe edu (pana in 8 maximmmmmm, 5-6 pagini fara pg de garda)
-
-
 ###########################
-
-II. Modul in care am creat aplicatia + interfata
-III. Modul de implementare si rezultate
-
-la final exista un capitol de concluzii
-exista si un loc pentru referinte
-
 
 Prerecuzita:
 - prezentare ppt in fata comisiei vom prezenta asta (intre 2 si 8 asta...)
@@ -60,6 +46,17 @@ Prerecuzita:
 
 - e suficient doar sa prezint PPT-ul, in care zic despre ce am facut, si ce e verificabil
 
+Citam surse (carti, articole stiintifice, site-uri de web specific notiunilor respective (java al unei firme care implementeaza cod java etc.), Microsoft, Google cu api-uri)
+
+Cum citam? Formatul correct: autorul, numele lucrarii, daca e dintr-o carte numele cartii, si titlul articolului, editura, anul, paginile articolului daca sunt…
+
+Se pot cita pagini web cu autor / fara autor (stiu autorul -> numele autorului si numele articolului, adresa web, ultima vizitare anul si luna e sufficient)
+Numele autorului -> steluta steluta steluta -> *** -> numele articolului -> restul detaliilor
+
+1.	Autorul, 2. numele lucrarii, 3. restul datelor
+
+
+###########################
 
 
 Cam cum ar arata lucrarea de licenta (+ discutii dupa SCSS):

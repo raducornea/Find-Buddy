@@ -132,17 +132,17 @@ def get_matching_users_metrics_profiles(fitting_user, k):
     indices = knn_cosine.fit_indices(fitting_user)
     profiles = [preferences[x] for x in indices]
     method = 'cosine'
-    metrics_and_profiles.append((method, profiles))
+    metrics_and_profiles.append((method, profiles, indices))
 
     indices = knn_euclidian.fit_indices(fitting_user)
     profiles = [preferences[x] for x in indices]
     method = 'euclidian'
-    metrics_and_profiles.append((method, profiles))
+    metrics_and_profiles.append((method, profiles, indices))
 
     indices = knn_jaccard.fit_indices(fitting_user)
     profiles = [preferences[x] for x in indices]
     method = 'jaccard'
-    metrics_and_profiles.append((method, profiles))
+    metrics_and_profiles.append((method, profiles, indices))
 
     return metrics_and_profiles
 
@@ -192,17 +192,22 @@ if __name__ == "__main__":
 
 
     # 3 indivizi noi cu ceilalti cei mai potriviti cu 3 metode si de afisat preferintele celorlalti (k=3/5):
-    # new_individ1 = [5, 19, 32]
-    # new_individ2 = [16]
-    # new_individ3 = [141, 5, 19, 55, 13]
-    # new_users = [new_individ1, new_individ2, new_individ3]
-    #
-    # for user in new_users:
-    #     metrics_and_profiles = get_matching_users_metrics_profiles(user, k=5)
-    #
-    #     print("*"*100)
-    #     print(f"Target preferences: {user}")
-    #     for metric_profile in metrics_and_profiles:
-    #         print(f"{metric_profile[0]}: \t{metric_profile[1]}")
+    new_individ1 = [5, 19, 32]
+    new_individ2 = [16]
+    new_individ3 = [141, 5, 19, 55, 13]
+    new_users = [new_individ1, new_individ2, new_individ3]
+
+    for user in new_users:
+        metrics_and_profiles_and_indices = get_matching_users_metrics_profiles(user, k=5)
+
+        print("*"*100)
+        print(f"Target preferences: {user}")
+        for metric_profile_indice in metrics_and_profiles_and_indices:
+            print(f"{metric_profile_indice[0]}: \t{metric_profile_indice[1]}")
+
+            # pentru a repera usori indicii
+            # print(metric_profile_indice[2])
+            # for index in metric_profile_indice[2]:
+            #     print(preferences[index])
 
     # de trimis codul dupa modifciari
