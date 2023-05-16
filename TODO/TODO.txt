@@ -37,6 +37,10 @@ Later - prezentari:
 - Raporturi
 
 
+Euclidian - nu opereaza bine cu date de dimensiuni mari (shrinking density - sparsification effect)
+- prin vot - fiecare vecin voteaza
+- k = 5-7-9-11 - decent
+
 
 ###########################
 
