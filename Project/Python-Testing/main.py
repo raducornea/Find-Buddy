@@ -1,11 +1,17 @@
 import json
 from flask import Flask, request
 
-from knn.KNNCosine import KNNCosine
-from knn.KNNEuclidian import KNNEuclidian
-from knn.KNNJaccard import KNNJaccard
+from knn.knn_strategies.KNNCosine import KNNCosine
+from knn.knn_strategies.KNNEuclidian import KNNEuclidian
+from knn.knn_strategies.KNNJaccard import KNNJaccard
 
 app = Flask(__name__)
+
+k = 55
+knn_cosine = KNNCosine(k)
+knn_euclidian = KNNEuclidian(k)
+knn_jaccard = KNNJaccard(k)
+knns = [knn_cosine, knn_euclidian, knn_jaccard]
 
 
 def get_preferences_from_request(request):
@@ -21,25 +27,32 @@ def get_preferences_from_request(request):
 @app.route("/algorithms/knn/<strategy>", methods=["POST"])
 def knn_route(strategy):
     users_preferences, target_preferences = get_preferences_from_request(request)
+    # k = len(users_preferences)
 
     if strategy == "cosine":
-        knn = KNNCosine(users_preferences, [target_preferences])
-    elif strategy == "jaccard":
-        knn = KNNJaccard(users_preferences, [target_preferences])
+        knn = knn_cosine
     elif strategy == "euclidian":
-        knn = KNNEuclidian(users_preferences, [target_preferences])
+        knn = knn_euclidian
+    elif strategy == "jaccard":
+        knn = knn_jaccard
     else:
-        knn = KNNJaccard(users_preferences, [target_preferences])
+        knn = knn_jaccard
 
-    k = len(users_preferences)
-    knn.train(k)
-    result = knn.fit_indices(target_preferences)
+    knn.fit(users_preferences)
+
+    # todo
+    #  should train WITH user_preferences, and NOT the default data set
+    predictions = knn.predict(target_preferences)
+    indices = list(map(lambda x: (x[1]), predictions))
 
     # change result so it returns a list of number with 1 space instead
-    result = str(list(result)).replace(", ", " ")
+    result = str(list(indices)).replace(", ", " ")
     return str(result)
 
 
 if __name__ == "__main__":
+    for knn in knns:
+        knn.fit_default()
+
     app.debug = True
     app.run(host="localhost", port=5000)
