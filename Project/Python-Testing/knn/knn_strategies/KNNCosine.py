@@ -12,8 +12,8 @@ class KNNCosine(KNN):
     def metric(self, u, v):
         return np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
 
-    def predict(self, new_point):
-        similarities = self.get_relationships(new_point)
+    def predict(self, new_point, target_index=None):
+        similarities = self.get_relationships(new_point, target_index)
 
         similarities.sort(key=lambda x: -x[0])
         best_individuals = similarities[:self.k]

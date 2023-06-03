@@ -12,8 +12,8 @@ class KNNEuclidian(KNN):
     def metric(self, u, v):
         return np.sqrt(np.sum((np.array(u) - np.array(v)) ** 2))  # return np.linalg.norm(u - v)
 
-    def predict(self, new_point):
-        distances = self.get_relationships(new_point)
+    def predict(self, new_point, target_index=None):
+        distances = self.get_relationships(new_point, target_index)
 
         distances.sort(key=lambda x: x[0])
         best_individuals = distances[:self.k]

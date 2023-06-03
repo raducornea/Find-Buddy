@@ -1,4 +1,5 @@
 from abc import abstractmethod, ABC
+from math import ceil
 
 import numpy as np
 
@@ -57,17 +58,19 @@ class KNN(ABC):
         pass
 
     @abstractmethod
-    def predict(self, new_point):
+    def predict(self, new_point, target_index):
         """
         :param new_point: vector of numerical preferences
+        :param target_index: index to AVOID getting the SAME USER
         :return:
         (*). based on those relationships and metric used, get best k individuals
         """
         pass
 
-    def get_relationships(self, new_point):
+    def get_relationships(self, new_point, target_index):
         """
         :param new_point: vector of numerical preferences
+        :param target_index: index to AVOID getting the SAME USER (None = ignore and can fit any user; else don't get that user)
         :return:
         1. make a set of those preferences
         2. based on those preferences, possibly RETRAIN the model if it doesn't have THOSE preferences
@@ -91,6 +94,7 @@ class KNN(ABC):
         # get relationships for that prediction
         relationships = []
         for index, binarized_point in enumerate(self.binarized_points):
+            if index == target_index: continue  # to skip getting the same user
             relationship = self.metric(binarized_point, binarized_target_preferences)
             relationships.append([relationship, index])
 
@@ -98,6 +102,22 @@ class KNN(ABC):
 
     def set_k(self, k):
         self.k = k
+
+
+def get_best_x_percentage_best_predictions(target_preference, k_predicted_preferences, percentage=0.7):
+    intersections = []
+    for index, preference in enumerate(k_predicted_preferences):
+        intersection = list(set(preference) & set(target_preference))
+        intersections.append((index, intersection))
+
+    total_procentually = ceil(int(percentage * len(intersections)))
+    intersections.sort(key=lambda x: -len(x[1]))
+    intersections = intersections[:total_procentually]
+
+    # !!! careful at indices, those are indexed from 0 to n!!! meaning that you'll have to make sure
+    # the indices are consistent too when working with the values!!!
+    intersections = list(map(lambda x: k_predicted_preferences[x[0]], intersections))
+    return intersections
 
 
 def binarize_vector(user, total_preferences):
@@ -113,3 +133,52 @@ def binarize_vectors(users, total_preferences):
         user_binary = binarize_vector(user, total_preferences)
         training_users_binary.append(user_binary)
     return training_users_binary
+
+
+# map list of list of strings to a dictionary to convert data easier
+def map_preferences(preferences_as_string):
+    flat_list = [item for sublist in preferences_as_string for item in sublist]
+    dictionary_of_indices, dictionary_of_preferences = {}, {}
+    preferences_set = list(set(flat_list))
+    preferences_set.sort(key=lambda x: x)
+    for index, preference in enumerate(preferences_set):
+        dictionary_of_indices[index] = preference
+        dictionary_of_preferences[preference] = index
+    return dictionary_of_indices, dictionary_of_preferences
+
+
+def get_preferences_as_numeric(preferences, dictionary_of_preferences):
+    numeric_preferences = []
+    for preference in preferences:
+        numeric_preferences.append(dictionary_of_preferences[preference])
+    return numeric_preferences
+
+
+def get_preferences_as_string(preferences, dictionary_of_indices):
+    numeric_preferences = []
+    for preference in preferences:
+        numeric_preferences.append(dictionary_of_indices[preference])
+    return numeric_preferences
+
+
+def get_preferences_list(preferences_as_string):
+    # Remove the square brackets at the beginning and end of the string
+    preferences_as_string = preferences_as_string.strip("[]")
+
+    # Split the string into sublists
+    sublists = preferences_as_string.split("], [")
+
+    # Iterate over each sublist
+    result = []
+    for sublist in sublists:
+        # Split the sublist into individual words
+        words = sublist.split(", ")
+
+        # Add quotes around each word and create a new sublist
+        quoted_words = [f'{word}' for word in words]
+
+        # Add the quoted sublist to the result
+        result.append(quoted_words)
+
+    # Print the result
+    return result

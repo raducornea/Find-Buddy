@@ -5,8 +5,8 @@ import com.project.profile.data.entities.UserProfile
 
 class SortByKNNCosine : ISortingStrategy {
 
-    override fun sort(currentUser: UserProfile, users: List<UserProfile>): List<UserProfile> {
+    override fun sort(currentUser: UserProfile, allUsers: List<UserProfile>, percentage: Double): List<UserProfile> {
         val urlStrategy = "http://localhost:5000/algorithms/knn/cosine"
-        return getMatchingUsersByStrategy(currentUser, users, urlStrategy)
+        return getMatchingUsersByStrategy(currentUser, allUsers, urlStrategy, percentage)
     }
 }

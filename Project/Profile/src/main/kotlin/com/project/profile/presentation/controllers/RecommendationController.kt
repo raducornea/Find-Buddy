@@ -36,6 +36,7 @@ class RecommendationController {
         @PathVariable userId: Int,
         @RequestParam(name = "search", defaultValue = "", required = false) search: Optional<String>,
         @RequestParam(name = "strategy", defaultValue = "most-preferences", required = false) strategy: String,
+        @RequestParam(name = "percentage", defaultValue = "0.7", required = false) percentage: Double,
     ): ResponseEntity<Any> {
 
         if (search.isPresent && search.get() != "") {
@@ -46,13 +47,13 @@ class RecommendationController {
         if (userId < 0) return ResponseEntity("User cannot have id -1!", HttpStatus.FORBIDDEN)
 
         val currentUser = profileRepository.findUserByIdmId(userId)
-        val allUsersExceptCurrentOne = profileRepository.findAllUsersNotMyId(userId)
+        val allUsers = profileRepository.findAll()
 
         // make strategy field here in request
         println(strategy)
         changeStrategy(strategy)
 
-        val sortedUsers = sortingStrategy.sort(currentUser.get(), allUsersExceptCurrentOne.get())
+        val sortedUsers = sortingStrategy.sort(currentUser.get(), allUsers, percentage)
         return ResponseEntity.ok().body(sortedUsers)
     }
 }

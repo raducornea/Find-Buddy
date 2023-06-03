@@ -4,6 +4,7 @@ import com.project.profile.data.dtos.UserDTO
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import java.util.*
 
 @Document(collection = "profiles")
 class UserProfile {
@@ -51,5 +52,30 @@ class UserProfile {
     }
     fun setPreferences(preferences: List<String>) {
         this.preferences = preferences
+    }
+
+    override fun toString(): String {
+        return "$id\n" +
+                "$idmId\n" +
+                "$firstName\n" +
+                "$lastName\n" +
+                "$email\n" +
+                "$preferences"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is UserProfile) return false
+
+        return id == other.id &&
+                idmId == other.idmId &&
+                firstName == other.firstName &&
+                lastName == other.lastName &&
+                email == other.email &&
+                preferences == other.preferences
+    }
+
+    override fun hashCode(): Int {
+        return Objects.hash(id, idmId, firstName, lastName, email, preferences)
     }
 }

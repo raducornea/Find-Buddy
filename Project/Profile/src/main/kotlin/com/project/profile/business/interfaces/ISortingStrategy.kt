@@ -9,7 +9,7 @@ import java.net.http.HttpResponse
 
 interface ISortingStrategy {
 
-    fun sort(currentUser: UserProfile, users: List<UserProfile>): List<UserProfile>
+    fun sort(currentUser: UserProfile, allUsers: List<UserProfile>, percentage: Double): List<UserProfile>
 
     private fun postRequest(values: Any?, url: String): String {
         val objectMapper = ObjectMapper()
@@ -27,24 +27,16 @@ interface ISortingStrategy {
         return response.body()
     }
 
-    fun getMatchingUsersByStrategy(currentUser: UserProfile, users: List<UserProfile>, url: String): List<UserProfile> {
+    fun getMatchingUsersByStrategy(currentUser: UserProfile, allUsers: List<UserProfile>, url: String, percentage: Double): List<UserProfile> {
 
         val targetPreferences = currentUser.getPreferences()
-        val usersPreferences = users.map { it.getPreferences() }
-        val allUsersPreferences = (targetPreferences + usersPreferences.flatten()).distinct()
+        val targetIndex = allUsers.indexOf(currentUser)
+        val knnPercentage = percentage
 
-        val map = mutableMapOf<String, Int>()
-        var counter = 1
-        allUsersPreferences.forEach {
-            map.put(it, counter++)
-        }
-
-        val targetPreferencesNUM = targetPreferences.map { map[it] }
-        val usersPreferencesNUM = usersPreferences.map { it -> it.map { map[it] } }
-
-        val jsonMap = mutableMapOf<String, List<Any?>>()
-        jsonMap.put("target_preferences", targetPreferencesNUM)
-        jsonMap.put("users_preferences", usersPreferencesNUM)
+        val jsonMap = mutableMapOf<String, Any?>()
+        jsonMap.put("target_preferences", targetPreferences)
+        jsonMap.put("target_index", targetIndex)
+        jsonMap.put("knn_percentage", knnPercentage)
 
         // receive response
         val response = postRequest(jsonMap, url) // [4 5 6 0 1]
@@ -53,8 +45,20 @@ interface ISortingStrategy {
             .removePrefix("[")
             .removeSuffix("]")
             .split(" ")
-            .map { users[it.toInt()] }
+            .map { allUsers[it.toInt()] }
 
         return resultingUsers
     }
+
+    // use these lines if you need to get all the prferences again and sent it to the python server
+//    val allUsersPreferences = (targetPreferences + usersPreferences.flatten()).distinct()
+//
+//    val map = mutableMapOf<String, Int>()
+//    var counter = 1
+//    allUsersPreferences.forEach {
+//        map.put(it, counter++)
+//    }
+//
+//    val targetPreferencesNUM = targetPreferences.map { map[it] }
+//    val usersPreferencesNUM = usersPreferences.map { it -> it.map { map[it] } }
 }
