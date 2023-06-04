@@ -17,6 +17,10 @@ class AggregatedData(ABC):
     def print_details(self):
         pass
 
+    @abstractmethod
+    def save_to_files(self):
+        pass
+
     def get_accuracy(self):
         return self.overall_accuracy / self.total_collected
 
@@ -28,3 +32,4 @@ class AggregatedData(ABC):
         self.similarity_data.moderate += observer.similarity_data.moderate
         self.similarity_data.high += observer.similarity_data.high
         self.similarity_data.very_high += observer.similarity_data.very_high
+

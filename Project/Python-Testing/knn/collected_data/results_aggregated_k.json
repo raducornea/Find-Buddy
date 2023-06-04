@@ -1,0 +1,92 @@
+[
+    {
+        "method": "k=3",
+        "total": 441,
+        "very_low": 105,
+        "low": 148,
+        "moderate": 132,
+        "high": 30,
+        "very_high": 26
+    },
+    {
+        "method": "k=5",
+        "total": 735,
+        "very_low": 214,
+        "low": 261,
+        "moderate": 193,
+        "high": 40,
+        "very_high": 27
+    },
+    {
+        "method": "k=7",
+        "total": 1029,
+        "very_low": 341,
+        "low": 385,
+        "moderate": 234,
+        "high": 42,
+        "very_high": 27
+    },
+    {
+        "method": "k=11",
+        "total": 1617,
+        "very_low": 677,
+        "low": 611,
+        "moderate": 260,
+        "high": 42,
+        "very_high": 27
+    },
+    {
+        "method": "k=110",
+        "total": 16170,
+        "very_low": 14389,
+        "low": 1449,
+        "moderate": 263,
+        "high": 42,
+        "very_high": 27
+    },
+    {
+        "method": "k=3",
+        "total": 441,
+        "very_low": 130,
+        "low": 156,
+        "moderate": 110,
+        "high": 25,
+        "very_high": 20
+    },
+    {
+        "method": "k=5",
+        "total": 735,
+        "very_low": 259,
+        "low": 267,
+        "moderate": 158,
+        "high": 31,
+        "very_high": 20
+    },
+    {
+        "method": "k=7",
+        "total": 1029,
+        "very_low": 406,
+        "low": 383,
+        "moderate": 187,
+        "high": 33,
+        "very_high": 20
+    },
+    {
+        "method": "k=11",
+        "total": 1617,
+        "very_low": 751,
+        "low": 605,
+        "moderate": 208,
+        "high": 33,
+        "very_high": 20
+    },
+    {
+        "method": "k=110",
+        "total": 16170,
+        "very_low": 14446,
+        "low": 1458,
+        "moderate": 213,
+        "high": 33,
+        "very_high": 20
+    }
+]

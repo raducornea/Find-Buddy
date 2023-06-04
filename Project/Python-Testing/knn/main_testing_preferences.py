@@ -53,6 +53,3 @@ for preference in new_preferences:
         best_x_percentage_predictions_string = [get_preferences_as_string(x, dictionary_of_indices) for x in best_x_percentage_predictions_numeric]
         print(best_x_percentage_predictions_string)
 
-
-with open('stored_preferences.txt', 'w') as file:
-    file.write(str(preferences_string))

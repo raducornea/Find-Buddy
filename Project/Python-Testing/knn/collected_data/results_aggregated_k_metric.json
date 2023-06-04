@@ -1,0 +1,272 @@
+[
+    {
+        "method": "k=3 & Cosine",
+        "total": 147,
+        "very_low": 38,
+        "low": 33,
+        "moderate": 44,
+        "high": 14,
+        "very_high": 18
+    },
+    {
+        "method": "k=3 & Euclidian",
+        "total": 147,
+        "very_low": 0,
+        "low": 76,
+        "moderate": 65,
+        "high": 4,
+        "very_high": 2
+    },
+    {
+        "method": "k=3 & Jaccard",
+        "total": 147,
+        "very_low": 67,
+        "low": 39,
+        "moderate": 23,
+        "high": 12,
+        "very_high": 6
+    },
+    {
+        "method": "k=5 & Cosine",
+        "total": 245,
+        "very_low": 81,
+        "low": 60,
+        "moderate": 62,
+        "high": 23,
+        "very_high": 19
+    },
+    {
+        "method": "k=5 & Euclidian",
+        "total": 245,
+        "very_low": 0,
+        "low": 144,
+        "moderate": 95,
+        "high": 4,
+        "very_high": 2
+    },
+    {
+        "method": "k=5 & Jaccard",
+        "total": 245,
+        "very_low": 133,
+        "low": 57,
+        "moderate": 36,
+        "high": 13,
+        "very_high": 6
+    },
+    {
+        "method": "k=7 & Cosine",
+        "total": 343,
+        "very_low": 133,
+        "low": 81,
+        "moderate": 85,
+        "high": 25,
+        "very_high": 19
+    },
+    {
+        "method": "k=7 & Euclidian",
+        "total": 343,
+        "very_low": 5,
+        "low": 227,
+        "moderate": 105,
+        "high": 4,
+        "very_high": 2
+    },
+    {
+        "method": "k=7 & Jaccard",
+        "total": 343,
+        "very_low": 203,
+        "low": 77,
+        "moderate": 44,
+        "high": 13,
+        "very_high": 6
+    },
+    {
+        "method": "k=11 & Cosine",
+        "total": 539,
+        "very_low": 261,
+        "low": 130,
+        "moderate": 104,
+        "high": 25,
+        "very_high": 19
+    },
+    {
+        "method": "k=11 & Euclidian",
+        "total": 539,
+        "very_low": 38,
+        "low": 383,
+        "moderate": 112,
+        "high": 4,
+        "very_high": 2
+    },
+    {
+        "method": "k=11 & Jaccard",
+        "total": 539,
+        "very_low": 378,
+        "low": 98,
+        "moderate": 44,
+        "high": 13,
+        "very_high": 6
+    },
+    {
+        "method": "k=110 & Cosine",
+        "total": 5390,
+        "very_low": 5009,
+        "low": 230,
+        "moderate": 107,
+        "high": 25,
+        "very_high": 19
+    },
+    {
+        "method": "k=110 & Euclidian",
+        "total": 5390,
+        "very_low": 4157,
+        "low": 1115,
+        "moderate": 112,
+        "high": 4,
+        "very_high": 2
+    },
+    {
+        "method": "k=110 & Jaccard",
+        "total": 5390,
+        "very_low": 5223,
+        "low": 104,
+        "moderate": 44,
+        "high": 13,
+        "very_high": 6
+    },
+    {
+        "method": "k=3 & Cosine",
+        "total": 147,
+        "very_low": 47,
+        "low": 41,
+        "moderate": 31,
+        "high": 17,
+        "very_high": 11
+    },
+    {
+        "method": "k=3 & Euclidian",
+        "total": 147,
+        "very_low": 1,
+        "low": 83,
+        "moderate": 56,
+        "high": 3,
+        "very_high": 4
+    },
+    {
+        "method": "k=3 & Jaccard",
+        "total": 147,
+        "very_low": 82,
+        "low": 32,
+        "moderate": 23,
+        "high": 5,
+        "very_high": 5
+    },
+    {
+        "method": "k=5 & Cosine",
+        "total": 245,
+        "very_low": 99,
+        "low": 62,
+        "moderate": 50,
+        "high": 23,
+        "very_high": 11
+    },
+    {
+        "method": "k=5 & Euclidian",
+        "total": 245,
+        "very_low": 4,
+        "low": 162,
+        "moderate": 72,
+        "high": 3,
+        "very_high": 4
+    },
+    {
+        "method": "k=5 & Jaccard",
+        "total": 245,
+        "very_low": 156,
+        "low": 43,
+        "moderate": 36,
+        "high": 5,
+        "very_high": 5
+    },
+    {
+        "method": "k=7 & Cosine",
+        "total": 343,
+        "very_low": 159,
+        "low": 81,
+        "moderate": 67,
+        "high": 25,
+        "very_high": 11
+    },
+    {
+        "method": "k=7 & Euclidian",
+        "total": 343,
+        "very_low": 12,
+        "low": 246,
+        "moderate": 78,
+        "high": 3,
+        "very_high": 4
+    },
+    {
+        "method": "k=7 & Jaccard",
+        "total": 343,
+        "very_low": 235,
+        "low": 56,
+        "moderate": 42,
+        "high": 5,
+        "very_high": 5
+    },
+    {
+        "method": "k=11 & Cosine",
+        "total": 539,
+        "very_low": 293,
+        "low": 126,
+        "moderate": 84,
+        "high": 25,
+        "very_high": 11
+    },
+    {
+        "method": "k=11 & Euclidian",
+        "total": 539,
+        "very_low": 44,
+        "low": 408,
+        "moderate": 80,
+        "high": 3,
+        "very_high": 4
+    },
+    {
+        "method": "k=11 & Jaccard",
+        "total": 539,
+        "very_low": 414,
+        "low": 71,
+        "moderate": 44,
+        "high": 5,
+        "very_high": 5
+    },
+    {
+        "method": "k=110 & Cosine",
+        "total": 5390,
+        "very_low": 5047,
+        "low": 218,
+        "moderate": 89,
+        "high": 25,
+        "very_high": 11
+    },
+    {
+        "method": "k=110 & Euclidian",
+        "total": 5390,
+        "very_low": 4144,
+        "low": 1159,
+        "moderate": 80,
+        "high": 3,
+        "very_high": 4
+    },
+    {
+        "method": "k=110 & Jaccard",
+        "total": 5390,
+        "very_low": 5255,
+        "low": 81,
+        "moderate": 44,
+        "high": 5,
+        "very_high": 5
+    }
+]

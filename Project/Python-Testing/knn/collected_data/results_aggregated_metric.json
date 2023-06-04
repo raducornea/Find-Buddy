@@ -1,0 +1,56 @@
+[
+    {
+        "method": "Cosine",
+        "total": 6664,
+        "very_low": 5522,
+        "low": 534,
+        "moderate": 402,
+        "high": 112,
+        "very_high": 94
+    },
+    {
+        "method": "Euclidian",
+        "total": 6664,
+        "very_low": 4200,
+        "low": 1945,
+        "moderate": 489,
+        "high": 20,
+        "very_high": 10
+    },
+    {
+        "method": "Jaccard",
+        "total": 6664,
+        "very_low": 6004,
+        "low": 375,
+        "moderate": 191,
+        "high": 64,
+        "very_high": 30
+    },
+    {
+        "method": "Cosine",
+        "total": 6664,
+        "very_low": 5645,
+        "low": 528,
+        "moderate": 321,
+        "high": 115,
+        "very_high": 55
+    },
+    {
+        "method": "Euclidian",
+        "total": 6664,
+        "very_low": 4205,
+        "low": 2058,
+        "moderate": 366,
+        "high": 15,
+        "very_high": 20
+    },
+    {
+        "method": "Jaccard",
+        "total": 6664,
+        "very_low": 6142,
+        "low": 283,
+        "moderate": 189,
+        "high": 25,
+        "very_high": 25
+    }
+]

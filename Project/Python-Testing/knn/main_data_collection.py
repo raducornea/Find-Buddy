@@ -31,7 +31,7 @@ for k in k_values:
     for metric in metric_values:
         aggregated_data.append(AggregatedDataKMetric(k, metric))
 
-for i in range(10):
+for i in range(1):
     subject.shuffle_preferences()
 
     for observer in observers:
@@ -41,4 +41,6 @@ for i in range(10):
             data.collect_from_observer(observer)
 
 for data in aggregated_data:
+    # make sure that jsons have at least [] in them!
+    data.save_to_files()
     data.print_details()

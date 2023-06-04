@@ -1,5 +1,6 @@
 package com.project.idm.presentation.controllers
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.project.idm.business.interfaces.ITokenService
 import com.project.idm.business.services.UserValidatorService
 import com.project.idm.data.dtos.UserDTO
@@ -16,6 +17,10 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.view.RedirectView
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse
 import java.security.Principal
 
 
@@ -65,6 +70,14 @@ class IdentityManagementController {
     fun register(@ModelAttribute userModel: UserDTO): ModelAndView {
         if (!userValidatorService.isUserRegisterValid(userModel))
             return ModelAndView("register-fail")
+
+        // upon success, make sure to register the preferences in knn algoritmh too for python
+        val urlRegisterCallback = "http://localhost:5000/algorithms/register"
+        val jsonMap = mutableMapOf<String, Any?>()
+        jsonMap.put("new_preferences", userModel.getPreferences())
+        val response = postRequest(jsonMap, urlRegisterCallback)
+        println(response)
+
         return ModelAndView("register-success")
     }
 
@@ -111,5 +124,21 @@ class IdentityManagementController {
         val auth: Authentication = SecurityContextHolder.getContext().authentication
         println(auth.authorities.elementAt(0))
         return auth.authorities.isNotEmpty() && auth.authorities.elementAt(0).toString() != "ROLE_ANONYMOUS"
+    }
+
+    private fun postRequest(values: Any?, url: String): String {
+        val objectMapper = ObjectMapper()
+        val requestBody: String = objectMapper
+            .writeValueAsString(values)
+
+        val client = HttpClient.newBuilder().build();
+        val request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build()
+
+        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+
+        return response.body()
     }
 }

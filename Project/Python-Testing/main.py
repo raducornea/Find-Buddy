@@ -1,7 +1,6 @@
 import ast
 import json
 from flask import Flask, request
-import atexit
 
 from knn.knn_strategies.KNN import get_best_x_percentage_best_predictions, map_preferences, get_preferences_as_numeric
 from knn.knn_strategies.KNNCosine import KNNCosine
@@ -10,7 +9,7 @@ from knn.knn_strategies.KNNJaccard import KNNJaccard
 
 app = Flask(__name__)
 
-k = 110
+k = 11
 knn_cosine = KNNCosine(k)
 knn_euclidian = KNNEuclidian(k)
 knn_jaccard = KNNJaccard(k)
@@ -32,10 +31,24 @@ def get_preferences_from_request(request):
     return target_preferences, target_index, knn_percentage
 
 
-# todo add register callback
-@app.route("/algorithms/register/<user>", methods=["POST"])
-def register_callback(user):
-    pass
+# should persist the preferences of the users too
+@app.route("/algorithms/register", methods=["POST"])
+def register_callback():
+    body = str(request.data.decode())
+    data = json.loads(body)
+
+    new_preferences_string = data["new_preferences"]
+    preferences_string.append(new_preferences_string)
+    dictionary_of_indices, dictionary_of_preferences = map_preferences(preferences_string)  # 0: '.net'; '.net': 0
+    preferences_numeric = [get_preferences_as_numeric(x, dictionary_of_preferences) for x in preferences_string]
+
+    for knn in knns:
+        knn.fit(preferences_numeric)
+
+    with open("knn/stored_preferences.txt", "w") as file:
+        file.write(str(preferences_string))
+
+    return "Success"
 
 
 @app.route("/algorithms/knn/<strategy>", methods=["POST"])
@@ -72,15 +85,6 @@ def knn_route(strategy):
     return str(result)
 
 
-# should persist the preferences of the users too
-def on_exit():
-    print("Flask application is exiting.")
-    with open('knn/stored_preferences.txt', 'w') as file:
-        file.write(str(preferences_string))
-
-
-atexit.register(on_exit)
-
 if __name__ == "__main__":
     # prefit with collected data
     with open("knn/stored_preferences.txt", "r+") as file:
@@ -88,10 +92,12 @@ if __name__ == "__main__":
         preferences_string = ast.literal_eval(text)
         # print(preferences_string)
 
+    dictionary_of_indices, dictionary_of_preferences = map_preferences(preferences_string)  # 0: '.net'; '.net': 0
+    preferences_numeric = [get_preferences_as_numeric(x, dictionary_of_preferences) for x in preferences_string]
+    print(len(preferences_string))
+
     for knn in knns:
         # knn.fit_default()
-        dictionary_of_indices, dictionary_of_preferences = map_preferences(preferences_string)  # 0: '.net'; '.net': 0
-        preferences_numeric = [get_preferences_as_numeric(x, dictionary_of_preferences) for x in preferences_string]
         knn.fit(preferences_numeric)
 
     app.debug = True
