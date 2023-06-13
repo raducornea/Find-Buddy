@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+    <head>
+        <title>Profile</title>
+        <link rel="stylesheet" th:href="@{/css/discovery.css}" />
+    </head>
+
+    <body>
+        <div class="color-background"></div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/index" class="home">Home</a></li>
+                <li><a href="/profile" class="profile">Profile</a></li>
+                <li><a href="/discovery" class="discovery">Discovery</a></li>
+                <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h1>Discovery</h1>
+            <form id="discoveryForm" action="#" th:action="@{/discovery/users}" method="get">
+                <label for="strategy">Select Strategy:</label>
+                <select id="strategy" name="strategy">
+                    <option value="knn-cosine">KNN Cosine</option>
+                    <option value="knn-euclidian">KNN Euclidian</option>
+                    <option value="knn-jaccard">KNN Jaccard</option>
+                    <option value="most-preferences">Most Preferences</option>
+                </select>
+                
+                <br></br>
+                <label for="percentage">Percentage:</label>
+                <input type="range" id="percentage" name="percentage" min="0" max="1" step="0.1" value="0.7">
+                <span id="percentageValue">0.7</span>
+        
+                <br></br>
+                <button type="submit">Find</button>
+            </form>
+        </div>
+
+        <script th:inline="javascript">
+            var percentageSlider = document.getElementById('percentage');
+            var percentageValue = document.getElementById('percentageValue');
+        
+            percentageSlider.addEventListener('input', function () {
+                percentageValue.textContent = percentageSlider.value;
+            });
+        </script>
+    </body>
+
+</html>

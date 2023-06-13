@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+    <head>
+        <title>User List</title>
+        <link rel="stylesheet" th:href="@{/css/user-list.css}" />
+    </head>
+
+    <body>
+        <div class="color-background"></div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/index" class="home">Home</a></li>
+                <li><a href="/profile" class="profile">Profile</a></li>
+                <li><a href="/discovery" class="discovery">Discovery</a></li>
+                <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Preferences</th>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td>
+                        <ul>
+                            <li th:each="preference : ${user.preferences}" th:text="${preference}"></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+
+</html>

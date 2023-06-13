@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    background-color: #f8fcc5;
+}
+
+/* Color background */
+.color-background {
+    background-color: #f8fcc5;
+    height: 0vh;
+    width: 100%;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #07033a;
+    overflow: hidden;
+}
+
+.navbar li {
+    display: inline-block;
+}
+
+.navbar li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #07033a;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.navbar li a:hover {
+    background-color: #0000ff;
+    color: #f8fcc5;
+}
+
+/* Content container */
+.content {
+    margin-top: 5px;
+    padding: 20px;
+}

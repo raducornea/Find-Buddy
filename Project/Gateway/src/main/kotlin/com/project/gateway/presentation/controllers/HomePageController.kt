@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CookieValue
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.servlet.ModelAndView
+import org.springframework.web.servlet.view.RedirectView
 
 @RestController
 class HomePageController {
@@ -25,10 +27,15 @@ class HomePageController {
     fun home(
         @RequestHeader(value = "Authorization", required = false, defaultValue = "") bearerJws: String,
         @CookieValue(value = "cookieAuthorizationToken", defaultValue = "") cookieJws: String,
-    ): ResponseEntity<String> {
+    ): Any {
 
         val allowedAuthorities = listOf("read", "write")
         val response = authorizationService.authorize(allowedAuthorities, bearerJws, cookieJws)
-        return response
+
+        return if (response.statusCode.is2xxSuccessful) {
+            ModelAndView("index")
+        } else {
+            RedirectView("/logout")
+        }
     }
 }

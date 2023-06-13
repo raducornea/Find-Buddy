@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+    <head>
+        <title>Welcome to the application!</title>
+        <link rel="stylesheet" th:href="@{/css/index.css}" />
+    </head>
+
+    <body>
+        <div class="color-background"></div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/index" class="home">Home</a></li>
+                <li><a href="/profile" class="profile">Profile</a></li>
+                <li><a href="/discovery" class="discovery">Discovery</a></li>
+                <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h1>Welcome!</h1>
+            <p>Here's a list of what you can do:</p>
+            <ul>
+                <li>For now, you can find users who share similar interests using different strategies.</li>
+                <li>You can also view your account, login and logout.</li>
+                <li>In case you want to test the application with other users, you can register as many as you'd like.</li>
+            </ul>
+        </div>
+    </body>
+
+</html>

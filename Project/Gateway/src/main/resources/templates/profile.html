@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+    <head>
+        <title>Profile</title>
+        <link rel="stylesheet" th:href="@{/css/profile.css}" />
+    </head>
+
+    <body>
+        <div class="color-background"></div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/index" class="home">Home</a></li>
+                <li><a href="/profile" class="profile">Profile</a></li>
+                <li><a href="/discovery" class="discovery">Discovery</a></li>
+                <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <h1>My profile</h1>
+            <p>First Name: <span th:text="${user.firstName}"></span></p>
+            <p>Last Name: <span th:text="${user.lastName}"></span></p>
+            <p>Email: <span th:text="${user.email}"></span></p>
+    
+            <h2>Preferences:</h2>
+            <ul>
+                <li th:each="preference : ${user.preferences}" th:text="${preference}"></li>
+            </ul>
+        </div>
+    </body>
+
+</html>

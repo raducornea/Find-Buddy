@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Error</title>
+        <link rel="stylesheet" th:href="@{/css/error.css}" />
+    </head>
+
+    <body>
+        <div class="color-background"></div>
+        <nav>
+            <ul class="navbar">
+                <li><a href="/index" class="home">Home</a></li>
+                <li><a href="/profile" class="profile">Profile</a></li>
+                <li><a href="/discovery" class="discovery">Discovery</a></li>
+                <li><a href="/logout" class="logout">Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h1>An error occurred</h1>
+            <p th:text="${errorMessage}">Sorry, an error occurred while processing your request.</p>
+        </div>
+
+    </body>
+
+</html>
