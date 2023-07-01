@@ -53,3 +53,47 @@ def plotting(data):
     plt.legend()
     plt.grid(True)
     plt.show()
+
+
+def plotting_accuracy(data):
+    aggregated_data = {}
+    for element in data:
+        method = element["method"]
+
+        forbidden_method = method == "k=110" or method == "k=110 & Cosine" or method == "k=110 & Jaccard" or method == "k=110 & Euclidian"
+        if forbidden_method: continue
+
+        if method not in aggregated_data:
+            aggregated_data[method] = {key: value for key, value in element.items() if key != "total"}
+            aggregated_data[method]["total"] = 1
+        else:
+            for key, value in element.items():
+                if key != "method" and key != "total":
+                    aggregated_data[method][key] += value
+            aggregated_data[method]["total"] += 1  # keep track of totals in here
+
+    # update aggregate_data so it prints accuracy alright
+    for method, values in aggregated_data.items():
+        aggregated_data[method]["accuracy"] /= aggregated_data[method]["total"]
+
+    # Extract the values from the aggregated data
+    methods = [element["method"] for element in aggregated_data.values()]
+    accuracy = [element["accuracy"] for element in aggregated_data.values()]
+
+    # Set the width of each bar
+    bar_width = 0.15
+
+    # Calculate the positions of the bars on the x-axis
+    r1 = np.arange(len(methods))
+
+    # Plot the data as clustered columns
+    plt.figure(figsize=(10, 6))
+    plt.bar(r1, accuracy, label="Accuracy")
+
+    plt.xlabel("Method")
+    plt.ylabel("Count")
+    plt.title("Comparison of Preference Categories by Method")
+    plt.xticks([r for r in range(len(methods))], methods)
+    plt.legend()
+    plt.grid(True)
+    plt.show()

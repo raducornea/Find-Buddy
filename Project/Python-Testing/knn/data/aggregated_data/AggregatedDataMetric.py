@@ -15,6 +15,7 @@ class AggregatedDataMetric(AggregatedData):
     def print_details(self):
         print("*" * 100)
         print(f"{self.name}")
+        print(f"accuracy:   {self.get_accuracy()}")
         self.similarity_data.print_statistics()
 
     def save_to_files(self):
@@ -29,6 +30,7 @@ class AggregatedDataMetric(AggregatedData):
 
         data_to_save = {
             "method": method,
+            "accuracy": self.get_accuracy(),
             "total": total,
             "very_low": very_low,
             "low": low,

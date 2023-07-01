@@ -1,0 +1,100 @@
+###############
+Pagina de garda
+
+Lucrare de licenta? De licenta most likely.
+Declaratie? - de citit cu mare atentie - va trebui completata si semnata, la sfarsit, cand terminam cu totul
+
+sesiunea _______IULIE 2023________
+_____AN UNIVERSITAR 2022-2023_____
+
+###############
+Cuprins
+
+###############
+Rezumat - ce contine
+3 sferturi, max 1 pagina
+
+1 paragraf - contextul actual al temei mele, generatilati
+1-2 paragrafe- tema mea, ce fac concret, ce fac, ce isi prpune sa faca
+1 paragraf - chestia tare, main-ul aplicatiei - de scos cele mai importante lucruri in proiectel
+1-2 paragrafe despre motivatia alegerii temei
+cate un paragraf, de fiecare capitol (2-3 capitole)
+ - 2-3 randuri rezumat pentru capitol - MINI idei principale
+1 paragraf - conluzii si bibliografia
+1 paragraf - ce elemente hardware si software trb sa fie instalate - pe scurt, doar insirate, NU explicate
+
+###############
+Introducere
+1.5 - 2pg
+
+- pe larg despre incadrarea temei in spatiul temelor respectiv, context
+- ideea de actualitate, in raport cu ceea ce cere piata actuala - cum se incadreaza langa celelalte
+- tema aplicatiei, tinta, motiv, scop, cum se obtin, ce se obtin - NU despre cod, ci strategii si concepte generale, doar ideile pe larg. pot insira mai multe idei
+- de ce, cum, pe larg + tinta + cum se incadreaza in context actual
+- + 1 paragraf mai spre final - bine in relief - ce e deosebit la tema mea fata de lucrurile pe piata
+- last paragraft - tehnologiile utilizate, pe larg, NU toate. o lista mai scurta
+
+###############
+Capitoul 1 cu cifra ROMANA
+- minim 2 subcaptiole clare
+
+1. tehnologiile folosite
+	- de citat si explicat intr-un paragraf fiecare tehnologie importanta utilizata
+	- cele folosite dar mai putin importante le pot grupa sau doar insira (mai mult proof of concept decat detaliere)
+2. arhitectura aplictatiei
+	- de explicat mult si insistent conceptele de organizare, elemente utilizate, sabloane de proiectare
+	1.1, 2.2 etc.
+	- BINE EVIDENTIAT
+	- scris CONCRET & DETALIAT arhitectura aplicatiei
+	- baze de date, tehnologii
+	
+###############
+Cap 2
+
+2.1 Functionalitatea aplicatiei
+interf grafica, rol butoane, print screen, use case-uri ,chestii si roluri ale utilizatorului si ce poate sa faca sau restul lumii
+- NU abuza prt screen-uri, dar PUNE destule
+- 3-5 printscreens max, mai importante
+
+2.2 Implementarea aplicatiei
+- de explicat lucrurile mai grele, ciudate, altfel, ciudate, care mi-au dat bataie de capitol
+- secvente MICi de cod & implementare + cum a fost implementat tot codul, pe module
+- secvente de cod DOAR CELE MAI SPECIALE DE INCLUS
+
+###############
+Cap 3
+Rezultatele aplicatiei
+ 3.1 experiemtne
+ 3.2 rezultate
+
+###############
+Concluziile
+- in mare, ce contin:
+- de spus, din nou, care e tema si motivatia alegerii ei, intr-un paragraf max 2 (1 usual, 2 daca sunt 2 motivatii substantiale)
+- 2-3 paragrafe despre ce am facut si ce am implementat efectiv, - care-s punctele tari ale aplicatiei mele
+- ultimul paragraf - dezvoltarile ulterioare (SA NU DEPASEASCA PUNCTELE TARI ALE PROIECTULUI MEU)
+
+###############
+Bibliografie
+- lucrari ceva mai stiintifice de modificat si citat
+- carti despre java/kotlin/python etc. din care m-ar fi putut ajuta sa invat chestii
+- pot cita si lucrarile stiintifice
+
+!!!
+Introducere
+Cap I.1 - pot cita orice si oricat. NU COPIA DE PE NET!!!
+Cap I.2 - pot cita orice si oricat. NU COPIA DE PE NET!!!
+De la 2 incolo mai mult ce am facut eu. Citez ceea ce am luat daca am luat.
+Restul chestiilor ce am facut eu, cam sunt ale mele, deci nu ar trebui citate.
+
+
+POT FOLOSI TOT CE AM FACUT LA SCSS SI SA PUN AICI - pot folosi abstract-ul doar pentru inceput in mare parte, dar restul pot prelua tot
+
+Documentatie - 40 pagini... oofies...
+Grosul sa fie la I (arhitectura o gramada) si II in special, oricat
+
+Atentie!!
+SCRIERE CU DIACRITICE. Cat mai corect gramatical, profesional. NU pseudostiintific. Cat mai mult in romana, din punctul de vedere.
+
+Cum ne vedem? Cand ne vedem? Si cum facem?
+pana pe 9 sa fie GATA codul, dupa aceea va fi documentatia de lucrat

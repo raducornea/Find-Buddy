@@ -17,6 +17,7 @@ class PreferencesSubject(Subject):
         self.preferences = [get_preferences_as_numeric(x, dictionary_of_preferences) for x in preferences_string]
 
         self.preferences_count = len(self.preferences)  # 158 elements
+        print(self.preferences_count)
         self.training_count = int(0.7 * self.preferences_count)
 
     def shuffle_preferences(self):

@@ -1,0 +1,8 @@
+cativa useri pentru testare de avut la prezentare
+
+sa apara si pe slide pe scurt:
+Microserviciile sunt utilizate cu scopul de a îmbunătăți procesul de dezvoltare, dar și de a modulariza aplicația încât microserviciile acesteia să poată eșua independent, să fie scalate pe orizontală (adăugând mai multe sisteme) sau verticală (adăugând mai multă putere de procesare RAM, CPU, GPU sistemelor existente, ori folosind containere virtuale). Fiecare dintre microserviciile utilizate are propriile pachete și clase. Un alt punct tare al aplicației îl reprezintă persistența datelor, ele continuând să existe și după ce au loc erori, iar ori de câte ori se pornesc serverele, datele de interes sunt încărcate prin bazele de date sau fișiere. Pe lângă acestea, s-a implementat și o interfață grafică, folosind și un cadru pentru dezvoltarea mai facilă a acestora (Thymeleaf).
+
+
+motivatie: necesitate cunostinte
+obiective: experimente, userv, comparare serv

@@ -17,9 +17,9 @@ with open("stored_preferences.txt", "r+") as file:
 # in order to map the data easily, we use 2 dictionaries
 dictionary_of_indices, dictionary_of_preferences = map_preferences(preferences_string)  # 0: '.net'; '.net': 0
 
-new_individ_string1 = ["c", "c++", "java"]
+new_individ_string1 = ["python", "c++", "java", "sql"]
 new_individ_string2 = ["python"]
-new_individ_string3 = ["react", "css"]
+new_individ_string3 = ["react", "css", ".net", "c#"]
 new_individ_numeric1 = get_preferences_as_numeric(new_individ_string1, dictionary_of_preferences)
 new_individ_numeric2 = get_preferences_as_numeric(new_individ_string2, dictionary_of_preferences)
 new_individ_numeric3 = get_preferences_as_numeric(new_individ_string3, dictionary_of_preferences)
@@ -29,7 +29,7 @@ preferences_numeric = [get_preferences_as_numeric(x, dictionary_of_preferences) 
 new_preferences = [new_individ_numeric1, new_individ_numeric2, new_individ_numeric3]
 
 k = 5
-voting_percentage = 0.7
+voting_percentage = 0.8
 knn_cosine = KNNCosine(k)
 knn_euclidian = KNNEuclidian(k)
 knn_jaccard = KNNJaccard(k)

@@ -51,7 +51,7 @@ tables = [
 
 for table in tables:
     print("*"*100)
-    df = pd.read_html(table)[0]
+    df = pd.read_html(table)[0]  # data frame
 
     username = list(df["username"])
     password = list(df["password"])
